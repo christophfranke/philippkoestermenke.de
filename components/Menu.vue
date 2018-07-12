@@ -24,7 +24,7 @@
  	},
  	computed: {
  		exhibitions() {
- 			return this.$store.getters.exhibitions;
+ 			return this.$store.getters.exhibitions.sort((a, b) => parseInt(b.uid, 10) - parseInt(a.uid, 10));
  		}
  	},
  	methods: {
