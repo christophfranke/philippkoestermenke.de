@@ -1,0 +1,17 @@
+@import 'colors';
+
+@font-face {
+	font-family: Graebenbach;
+	src:
+		url('/graebenbach-regular.woff') format('woff'),
+		url('/graebenbach-regular.eot') format('eot'),
+		url('/graebenbach-regular.ttf') format('ttf');
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Graebenbach;
+	background-color: $white;
+	color: $black;
+}
