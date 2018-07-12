@@ -8,7 +8,7 @@ export default () => {
       data: {},
     },
     getters: {
-      page: ({ data }) => (uid) => (data.find(doc => doc.type === 'page' && doc.uid === uid) || {}).data
+      page: ({ data }) => uid => (data.find(doc => doc.type === 'page' && doc.uid === uid) || {}).data
     },
     actions: {
       nuxtServerInit({ state }) {
