@@ -5,7 +5,7 @@
 			<img :src="currentImage.url" :class="currentImageClass" @load="onImageLoad">
 			<div :class="{ next: true, show: hasNextImage }"><a @click="nextImage">-&gt;</a></div>
 		</div>
-		
+		<RichText :content="piece.description" style="font-size: 24px" />
 	</div>
 </template>
 
@@ -65,6 +65,8 @@ export default {
 .gallery {
 	display: grid;
 	grid-template-columns: 25% 25% 25% 25%;
+	border-bottom: border();
+	
 	.placeholder {
 		display: none;
 		&.show {
@@ -74,7 +76,6 @@ export default {
 	img {
 		width: 100%;
 		height: auto;
-		border-bottom: border();
 		visibility: hidden;
 		&.visible {
 			visibility: visible;
