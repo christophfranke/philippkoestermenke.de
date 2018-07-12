@@ -2,8 +2,7 @@
 	<div>
 		<Breadcrump :path="['Work', 'Heizkörper', piece.title[0].text]" />
 		<div class="gallery">
-			<div :class="{ placeholder: true, show: currentImageClass.square }" />
-			<img :src="currentImage.url" :class="currentImageClass">
+			<img :src="currentImage.url" :class="currentImageClass" @load="onImageLoad">
 			<div :class="{ next: true, show: hasNextImage }"><a @click="nextImage">-&gt;</a></div>
 		</div>
 		
@@ -18,6 +17,7 @@ export default {
 	data() {
 		return {
 			currentImageIndex: 0,
+			imagesLoaded: false,
 		};
 	},
 	components,
@@ -36,6 +36,7 @@ export default {
 			return {
 				wide: Math.round(aspectRatio) > 1,
 				square: Math.round(aspectRatio) <= 1,
+				visible: this.imagesLoaded
 			}
 		},
 		hasNextImage() {
@@ -46,21 +47,14 @@ export default {
 		}
 	},
 
-	mounted() {
-		this.preloadImages()
-	},
-
 	methods: {
 		nextImage() {
 			this.currentImageIndex = (this.currentImageIndex + 1) % this.gallery.length
+			this.imagesLoaded = false
 		},
-		preloadImages() {
-			if (window) {
-				this.gallery.forEach(image => {
-					new Image().src = image.url;
-				})
-			}
-		}
+		onImageLoad() {
+			this.imagesLoaded = true
+		},
 	},
 }
 </script>
@@ -69,35 +63,43 @@ export default {
 @import '../../../style/definitions';
 
 .gallery {
-	display: flex;
-	align-items: center;
+	display: grid;
+	grid-template-columns: 25% 25% 25% 25%;
 	.placeholder {
-		width: 25%;
-		border-right: border();
 		display: none;
 		&.show {
 			display: block;
 		}
 	}
 	img {
-		border-right: border();
+		width: 100%;
+		height: auto;
 		border-bottom: border();
+		visibility: hidden;
+		&.visible {
+			visibility: visible;
+		}
 		&.wide {
-			width: 75%;
+			grid-column-start: 1;
+			grid-column-end: 4;
 		}
 		&.square {
-			width: 50%;
+			grid-column-start: 2;
+			grid-column-end: 4;
 			border-left: border();
 		}
 	}
 	.next {
-		width: 25%;
+		border-left: border();
+		grid-column-start: 4;
+		grid-column-end: 4;
 		text-align: center;
 		align-self: stretch;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		a {
+			cursor: pointer;
 			display: none;
 		}
 		&.show a {
