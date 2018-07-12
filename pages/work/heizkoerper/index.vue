@@ -12,14 +12,15 @@
 			</nuxt-link>
 			<div :class="{ hasLeftBorder: heizkoerper.length % 4 }" />
 		</div>
+		<Logo />
 	</div>
 </template>
 
 <script>
-import components from '../../components'
+import components from '../../../components'
 
 export default {
-	name: 'Heizkoerper',
+	name: 'HeizkoerperOverview',
 	components,
 	computed: {
 		heizkoerper() {
@@ -30,7 +31,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../style/definitions';
+@import '../../../style/definitions';
 
 .work {
 	display: grid;

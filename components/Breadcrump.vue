@@ -20,7 +20,7 @@ export default {
 	},
 	computed: {
 		parents() {
-			return this.path.slice(this.path.length - 2, this.path.length - 1)
+			return this.path.slice(0, this.path.length - 1)
 		},
 		current() {
 			return this.path[this.path.length - 1]

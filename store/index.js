@@ -8,7 +8,7 @@ export default () => {
       data: {},
     },
     getters: {
-      page: ({ data }) => uid => (data.find(doc => doc.type === 'page' && doc.uid === uid) || {}).data,
+      piece: ({ data }) => uid => (data.find(doc => doc.type === 'heizkoerper' && doc.uid === uid) || {}).data,
       exhibitions: ({ data }) => data.filter(doc => doc.type === 'exhibitions'),
       heizkoerper: ({ data }) => data.filter(doc => doc.type === 'heizkoerper')
     },

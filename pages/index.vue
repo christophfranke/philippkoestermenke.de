@@ -1,8 +1,5 @@
 <template>
-	<div>
-<!-- 		<RichText :content="page.title" />
-		<RichText :content="page.description" />
- -->	</div>
+	<Logo />
 </template>
 
 <script>
