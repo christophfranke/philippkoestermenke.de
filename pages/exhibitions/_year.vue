@@ -40,5 +40,6 @@ export default {
 }
 .exhibitions {
 	padding-top: 24px;
+	padding-bottom: 24px;
 }
 </style>

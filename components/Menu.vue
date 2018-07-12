@@ -64,6 +64,9 @@ li {
 	display: block;
 	background-color: $white;
 	border-bottom: border();
+	a {
+		display: block;
+	}
 	&.item {
 		position: relative;
 		border-left: border();
