@@ -40,16 +40,8 @@
 </script>
 
 <style lang="scss" scoped>
-@import '../style/colors';
+@import '../style/definitions';
 
-$border: (
-	width: 3px,
-	style: solid,
-	color: $black
-);
-@function border {
-	@return map-get($border, width) map-get($border, style) map-get($border, color);
-}
 
 ul {
 	display: flex;

@@ -1,7 +1,6 @@
 <template>
 	<div>
 		<Menu />
-		<Breadcrump />
 		<nuxt/>
 		<Logo />
 	</div>

@@ -1,5 +1,6 @@
 <template>
-	<div>
+	<div class="wrapper">
+		<Breadcrump :path="['Exhibitions', year]" />
 		<div v-for="exhibition in exhibitions" class="line">
 			<RichText :content="exhibition" />
 		</div>
@@ -13,9 +14,12 @@ export default {
 	name: 'Exhibitions',
 	components,
 	computed: {
+		year() {
+			return this.$route.params.year
+		},
 		exhibitions() {
  			return this.$store.getters.exhibitions
- 				.find(doc => doc.uid === this.$route.params.year).data.exhibitions
+ 				.find(doc => doc.uid === this.year).data.exhibitions
  				.map(exhibition => exhibition.exhibition)
  				.map(paragraphs => paragraphs.map(data => ({ ...data, text: `● ${data.text}`})))
 		}
@@ -24,7 +28,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-	.dot {
-		margin-right: 5px;
-	}
+@import '../../style/definitions';
+
+.dot {
+	margin-right: 5px;
+}
+.wrapper {
+	border-bottom: border();
+}
 </style>
