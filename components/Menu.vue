@@ -1,6 +1,6 @@
 <template>
-	<ul>
-		<li class="home">Philipp&nbsp;Köstermenke</li>
+	<ul @click="closeAll" :class="baseClasses">
+		<li class="home"><nuxt-link to="/">Philipp&nbsp;Köstermenke</nuxt-link></li>
 		<li class="item">
 			Exhibitions
 			<ul class="sub">
@@ -17,9 +17,23 @@
 <script>
  export default {
  	name: 'Menu',
+ 	data() {
+ 		return {
+ 			baseClasses: [],
+ 		};
+ 	},
  	computed: {
  		exhibitions() {
  			return this.$store.getters.exhibitions;
+ 		}
+ 	},
+ 	methods: {
+ 		closeAll() {
+ 			this.baseClasses = ['closed']
+ 			// only allow new hovering after 100ms
+ 			setTimeout(() => {
+ 				this.baseClasses = []
+ 			}, 100)
  		}
  	}
  }
@@ -74,6 +88,9 @@ li {
 			justify-content: flex-start;
 			border-left: border();
 			border-right: border();
+			.closed & {
+				display: none;
+			}
 			li {
 				width: 100%;
 				border-bottom: border();
