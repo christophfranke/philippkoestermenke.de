@@ -9,7 +9,8 @@ export default () => {
     },
     getters: {
       page: ({ data }) => uid => (data.find(doc => doc.type === 'page' && doc.uid === uid) || {}).data,
-      exhibitions: ({ data }) => data.filter(doc => doc.type === 'exhibitions')
+      exhibitions: ({ data }) => data.filter(doc => doc.type === 'exhibitions'),
+      heizkoerper: ({ data }) => data.filter(doc => doc.type === 'heizkoerper')
     },
     actions: {
       nuxtServerInit({ state }) {

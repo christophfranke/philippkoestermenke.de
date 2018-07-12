@@ -1,15 +1,21 @@
 <template>
-	<ul @click="closeAll" :class="baseClasses">
+	<ul :class="baseClasses">
 		<li class="home"><nuxt-link to="/">Philipp&nbsp;Köstermenke</nuxt-link></li>
 		<li class="item">
 			Exhibitions
-			<ul class="sub">
+			<ul class="sub" @click="closeAll">
 				<li v-for="exhibition in exhibitions">
 					<nuxt-link :to="`/exhibitions/${exhibition.uid}`">{{ exhibition.uid }}</nuxt-link>
 				</li>
 			</ul>
 		</li>
-		<li class="item">Work</li>
+		<li class="item">
+			Work
+			<ul class="sub" @click="closeAll">
+				<li><nuxt-link to="/work/heizkoerper">Heizkörper</nuxt-link></li>
+				<li><nuxt-link to="/work/heizungsbuch">Heizungsbuch</nuxt-link></li>
+			</ul>
+		</li>
 		<li class="item">Info</li>
 	</ul>
 </template>
@@ -44,12 +50,14 @@
 
 
 ul {
-	display: flex;
+	display: grid;
+	grid-template-columns: 25% 25% 25% 25%;
 	justify-content: space-between;
 	margin: 0;
 	padding: 0;
 	&.sub {
 		position: absolute;
+		z-index: 10;
 		left: - map-get($border, width);
 		right: - map-get($border, width);
 		display: none;
@@ -60,7 +68,6 @@ li {
 	padding-top: 24px;
 	padding-bottom: 24px;
 	text-align: center;
-	width: 25%;
 	display: block;
 	background-color: $white;
 	border-bottom: border();
