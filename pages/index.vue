@@ -1,8 +1,8 @@
 <template>
 	<div>
-		<RichText :content="page.title" />
+<!-- 		<RichText :content="page.title" />
 		<RichText :content="page.description" />
-	</div>
+ -->	</div>
 </template>
 
 <script>

@@ -4,15 +4,26 @@
 		<li class="item">
 			Exhibitions
 			<ul class="sub">
-				<li>2018</li>
-				<li>2017</li>
-				<li>2016</li>
+				<li v-for="exhibition in exhibitions">
+					<nuxt-link :to="`/exhibitions/${exhibition.uid}`">{{ exhibition.uid }}</nuxt-link>
+				</li>
 			</ul>
 		</li>
 		<li class="item">Work</li>
 		<li class="item">Info</li>
 	</ul>
 </template>
+
+<script>
+ export default {
+ 	name: 'Menu',
+ 	computed: {
+ 		exhibitions() {
+ 			return this.$store.getters.exhibitions;
+ 		}
+ 	}
+ }
+</script>
 
 <style lang="scss" scoped>
 @import '../style/colors';
