@@ -35,6 +35,8 @@ export default {
 	color: $blue;
 }
 .wrapper {
+	padding-top: 24px;
+	padding-bottom: 24px;
 	border-bottom: border();
 }
 </style>

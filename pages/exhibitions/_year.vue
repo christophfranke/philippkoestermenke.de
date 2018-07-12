@@ -1,8 +1,10 @@
 <template>
 	<div class="wrapper">
 		<Breadcrump :path="['Exhibitions', year]" />
-		<div v-for="exhibition in exhibitions" class="line">
-			<RichText :content="exhibition" />
+		<div class="exhibitions">
+			<div v-for="exhibition in exhibitions" class="line">
+				<RichText :content="exhibition" />
+			</div>
 		</div>
 	</div>
 </template>
@@ -35,5 +37,8 @@ export default {
 }
 .wrapper {
 	border-bottom: border();
+}
+.exhibitions {
+	padding-top: 24px;
 }
 </style>
