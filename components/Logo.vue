@@ -1,9 +1,9 @@
 <template>
-	<img src="/philippkoestermenke.svg">
+	<img src="/philippkoestermenke.svg" class="logo">
 </template>
 
 <style lang="scss" scoped>
-	img {
+	img.logo {
 		width: 349px;
 		height: auto;
 		position: absolute;

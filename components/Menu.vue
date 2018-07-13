@@ -16,7 +16,14 @@
 				<li><nuxt-link to="/work/heizungsbuch">Heizungsbuch</nuxt-link></li>
 			</ul>
 		</li>
-		<li class="item">Info</li>
+		<li class="item">
+			Info
+			<ul class="sub" @click="closeAll">
+				<li v-for="info in infoPages">
+					<nuxt-link :to="`/info/${info.uid}`">{{ info.data.title[0].text }}</nuxt-link>
+				</li>
+			</ul>
+		</li>
 	</ul>
 </template>
 
@@ -30,7 +37,10 @@
  	},
  	computed: {
  		exhibitions() {
- 			return this.$store.getters.exhibitions.sort((a, b) => parseInt(b.uid, 10) - parseInt(a.uid, 10));
+ 			return this.$store.getters.exhibitions.sort((a, b) => parseInt(b.uid, 10) - parseInt(a.uid, 10))
+ 		},
+ 		infoPages() {
+ 			return this.$store.getters.infoPages
  		}
  	},
  	methods: {
