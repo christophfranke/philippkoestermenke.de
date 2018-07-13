@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nuxt",
-    "build": "nuxt generate",
+    "build": "babel-node fetch.js --presets es2015,stage-2 && nuxt generate",
     "fetch": "babel-node fetch.js --presets es2015,stage-2"
   },
   "author": "Christoph Franke",

@@ -1,6 +1,7 @@
 
 node_modules/
 .nuxt/
+dist/
 
 cms-data.json
 yarn-error.log
