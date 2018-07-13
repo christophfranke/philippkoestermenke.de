@@ -1,7 +1,7 @@
 <template>
 	<div class="gallery">
 		<img :src="currentImage.url" :class="currentImageClass" @load="onImageLoad" :style="imageStyle" ref="image">
-		<div :class="{ next: true, show: hasNextImage }"><a @click="nextImage">-&gt;</a></div>
+		<div :class="{ next: true, show: hasNextImage, disabled: !imagesLoaded }"><a @click="nextImage">-&gt;</a></div>
 	</div>
 </template>
 
@@ -58,14 +58,17 @@ export default {
 			}
 		},
 		nextImage() {
-			this.imagesLoaded = false
-			this.updateDimensions()
-			this.updateImageClass()
-			this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length
+			if (this.imagesLoaded) {			
+				this.imagesLoaded = false
+				this.updateDimensions()
+				this.updateImageClass()
+				this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length
+			}
 		},
 		onImageLoad() {
 			this.imagesLoaded = true
 			this.updateImageClass()
+			this.$emit('load')
 		},
 	}
 }
@@ -117,6 +120,9 @@ export default {
 		}
 		&.show a {
 			display: inline;
+		}
+		&.disabled a {
+			display: none;
 		}
 	}
 }
