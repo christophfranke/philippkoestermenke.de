@@ -6,6 +6,9 @@ module.exports = {
       return data
         .filter(doc => doc.type === 'exhibitions')
         .map(doc => `/exhibitions/${doc.uid}`)
+        .concat(data
+          .filter(doc => doc.type === 'heizkoerper')
+          .map(doc => `/work/heizkoerper/${doc.uid}`))
     }
   },
   loading: false,
