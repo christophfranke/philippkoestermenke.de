@@ -12,7 +12,8 @@ export default () => {
       exhibitions: ({ data }) => data.filter(doc => doc.type === 'exhibitions'),
       heizkoerper: ({ data }) => data.filter(doc => doc.type === 'heizkoerper'),
       infoPages: ({ data }) => data.filter(doc => doc.type === 'info'),
-      infoPage: ({ data }) => slug => (data.find(doc => doc.type === 'info' && doc.uid === slug) || {}).data
+      infoPage: ({ data }) => slug => (data.find(doc => doc.type === 'info' && doc.uid === slug) || {}).data,
+      heizungsbuch: ({ data }) => (data.find(doc => doc.type === 'heizungsbuch') || {}).data
     },
     actions: {
       nuxtServerInit({ state }) {
