@@ -9,6 +9,9 @@ module.exports = {
         .concat(data
           .filter(doc => doc.type === 'heizkoerper')
           .map(doc => `/work/heizkoerper/${doc.uid}`))
+        .concat(data
+          .filter(doc => doc.type === 'info')
+          .map(doc => `/info/${doc.uid}`))
     }
   },
   loading: false,
