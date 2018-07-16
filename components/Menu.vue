@@ -160,6 +160,9 @@ li {
 	&.item {
 		position: relative;
 		border-left: border();
+		@media (max-width: 550px) {
+			border-left: none;
+		}
 	}
 	&:hover {
 		color: $blue;
@@ -174,6 +177,9 @@ li {
 		justify-content: flex-start;
 		li {
 			border-left: border();
+			@media (max-width: 550px) {
+				border-left: none;
+			}
 		}
 		border-right: border();
 		li {
