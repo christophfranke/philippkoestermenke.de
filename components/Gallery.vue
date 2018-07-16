@@ -1,5 +1,5 @@
 <template>
-	<div class="gallery">
+	<div :class="{ gallery: true, [type]: true }">
 		<img :src="currentImage.url" :class="currentImageClass" @load="onImageLoad" :style="imageStyle" ref="image">
 		<div :class="{ next: true, show: hasNextImage, disabled: !imagesLoaded }"><a @click="nextImage">-&gt;</a></div>
 	</div>
@@ -12,7 +12,11 @@ export default {
 		images: {
 			type: Array,
 			required: true,
-		}
+		},
+		type: {
+			type: String,
+			default: 'tiles'
+		},
 	},
 
 	data() {
@@ -79,7 +83,12 @@ export default {
 
 .gallery {
 	display: grid;
-	grid-template-columns: 25% 25% 25% 25%;
+	&.tiles {
+		grid-template-columns: 25% 50% 25%;
+	}
+	&.free {
+		grid-template-columns: 376fr 292fr 585fr 292fr 116fr 259fr;
+	}
 	border-bottom: border();
 	
 	.placeholder {
@@ -97,23 +106,17 @@ export default {
 		}
 		&.wide {
 			grid-column-start: 1;
-			grid-column-end: 4;
+			grid-column-end: 3;
 		}
 		&.square {
 			grid-column-start: 2;
-			grid-column-end: 4;
-			border-left: border();
+			grid-column-end: 3;
 		}
 	}
 	.next {
-		border-left: border();
-		grid-column-start: 4;
-		grid-column-end: 4;
-		text-align: center;
 		align-self: stretch;
 		display: flex;
 		align-items: center;
-		justify-content: center;
 		a {
 			cursor: pointer;
 			display: none;
@@ -123,6 +126,39 @@ export default {
 		}
 		&.disabled a {
 			display: none;
+		}
+	}
+
+	&.tiles {
+		.next {
+			grid-column-start: 3;
+			grid-column-end: 3;
+			border-left: border();
+			justify-content: center;
+		}
+
+		img.square {
+			border-left: border();
+		}
+	}
+
+	&.free {
+		padding-top: 54px;
+		padding-bottom: 56px;
+
+		img.square {
+			grid-column-start: 3;
+			grid-column-end: 4;
+		}
+
+		img.wide {
+			grid-column-start: 2;
+			grid-column-end: 5;
+		}
+
+		.next {
+			grid-column-start: 6;
+			grid-column-end: 6;
 		}
 	}
 }

@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<Breadcrump :path="['Work', 'Heizungsbuch']" />
-		<Gallery :images="gallery" @load="ready = true"/>
+		<Gallery :images="gallery" type="free" @load="ready = true"/>
 		<RichText :content="heizungsbuch.description" style="font-size: 24px" v-if="ready" />
 	</div>
 </template>
