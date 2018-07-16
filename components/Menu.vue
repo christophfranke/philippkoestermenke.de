@@ -1,6 +1,6 @@
 <template>
 	<ul :class="{ mobile: mobile }">
-		<li class="item home"><nuxt-link to="/">Philipp&nbsp;Köstermenke</nuxt-link></li>
+		<li class="home"><nuxt-link to="/">Philipp&nbsp;Köstermenke</nuxt-link></li>
 		<li
 			v-if="mobile"
 			:class="{ item: true, open: isOpen('mobile') }"
