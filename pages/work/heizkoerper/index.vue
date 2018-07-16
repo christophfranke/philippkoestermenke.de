@@ -12,7 +12,6 @@
 			</nuxt-link>
 			<div :class="{ hasLeftBorder: heizkoerper.length % 4 }" />
 		</div>
-		<Logo />
 	</div>
 </template>
 
@@ -36,6 +35,9 @@ export default {
 .work {
 	display: grid;
 	grid-template-columns: 25% 25% 25% 25%;
+	@media (max-width: 1025px) {
+		grid-template-columns: 50% 50%;
+	}
 }
 img {
 	display: block;
