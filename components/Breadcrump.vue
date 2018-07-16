@@ -1,5 +1,5 @@
 <template>
-	<div class="wrapper">
+	<div class="wrapper" :style="style">
 		<span v-for="crump in parents">
 			{{ crump }} →
 		</span>
@@ -24,6 +24,11 @@ export default {
 		},
 		current() {
 			return this.path[this.path.length - 1]
+		},
+		style() {
+			return {
+				paddingLeft: `${this.$store.getters.koesteOffset}px`
+			}
 		}
 	}
 }

@@ -2,7 +2,7 @@
 	<div>
 		<Breadcrump :path="['Work', 'Heizungsbuch']" />
 		<Gallery :images="gallery" type="free" @load="ready = true"/>
-		<RichText :content="heizungsbuch.description" style="font-size: 16px" v-if="ready" />
+		<RichText :content="heizungsbuch.description" class="subline" :style="sublineStyle" v-if="ready" />
 	</div>
 </template>
 
@@ -26,6 +26,18 @@ export default {
 		gallery() {
 			return this.heizungsbuch.gallery.map(entry => entry.image)
 		},
+		sublineStyle() {
+			return {
+				paddingLeft: `${this.$store.getters.koesteOffset}px`
+			}
+		}
 	}
 }
 </script>
+
+<style lang="scss" scoped>
+.subline {
+	font-size: 16px;
+	margin-top: 12px;
+}
+</style>

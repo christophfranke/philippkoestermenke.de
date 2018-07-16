@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<Breadcrump :path="['Info', page.title[0].text]" />
-		<RichText :content="page.content" class="info" />
+		<RichText :content="page.content" :style="style" class="info" />
 		<Logo />
 	</div>
 </template>
@@ -18,6 +18,11 @@ export default {
 		},
 		page() {
 			return this.$store.getters.infoPage(this.slug)
+		},
+		style() {
+			return {
+				paddingLeft: `${this.$store.getters.koesteOffset}px`
+			}
 		}
 	}
 }

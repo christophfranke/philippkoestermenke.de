@@ -1,13 +1,26 @@
 <template>
-	<img src="/philippkoestermenke.svg" class="logo">
+	<img src="/philippkoestermenke.svg" class="logo" :style="style">
 </template>
+
+<script>
+export default {
+	name: 'Logo',
+	computed: {
+		style() {
+			return {
+				left: `${this.$store.getters.koesteOffset}px`,
+				width: `${this.$store.getters.koesteWidth}px`
+			}
+		}
+	}
+}
+</script>
 
 <style lang="scss" scoped>
 	img.logo {
-		width: 349px;
 		height: auto;
 		position: absolute;
-		left: 67px;
-		bottom: 37px;
+		bottom: 24px;
+		transform: scale(1.1);
 	}
 </style>

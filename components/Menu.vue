@@ -1,6 +1,6 @@
 <template>
 	<ul :class="{ mobile: mobile }">
-		<li class="home"><nuxt-link to="/">Philipp&nbsp;Köstermenke</nuxt-link></li>
+		<li class="home"><nuxt-link to="/"><span id="koeste">Philipp&nbsp;Köstermenke</span></nuxt-link></li>
 		<li
 			v-if="mobile"
 			:class="{ item: true, open: isOpen('mobile') }"
@@ -78,17 +78,18 @@
 </template>
 
 <script>
- export default {
+import { mapGetters } from 'vuex'
+export default {
  	name: 'Menu',
 
  	data() {
  		return {
  			openSubs: {},
- 			windowWidth: null
  		};
  	},
 
  	computed: {
+ 		...mapGetters(['windowWidth']),
  		exhibitions() {
  			return this.$store.getters.exhibitions.sort((a, b) => parseInt(b.uid, 10) - parseInt(a.uid, 10))
  		},
@@ -98,11 +99,6 @@
  		mobile() {
  			return this.windowWidth && this.windowWidth <= 1024
  		},
- 	},
-
- 	mounted() {
- 		this.calculateWidth()
- 		this.listenToResize()
  	},
 
  	methods: {
@@ -118,16 +114,6 @@
  		},
  		isOpen(name) {
  			return !!this.openSubs[name]
- 		},
- 		calculateWidth() {
- 			if (window) {
-	 			this.windowWidth = window.innerWidth
- 			}
- 		},
- 		listenToResize() {
- 			if (window) {
- 				window.addEventListener('resize', this.calculateWidth)
- 			}
  		}
  	}
 }
