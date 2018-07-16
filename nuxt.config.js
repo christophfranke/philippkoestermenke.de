@@ -18,7 +18,7 @@ module.exports = {
       { rel: "preload", href: "/graebenbach-regular.woff", as: "font", type: "font/woff" }
     ],
     meta: [
-      { name: 'viewport', content: 'width=device-width; initial-scale=1.0' }
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
     ]
   }
 }
