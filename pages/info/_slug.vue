@@ -27,8 +27,8 @@ export default {
 @import '../../style/definitions';
 
 .info {
-	padding-top: 24px;
-	padding-bottom: 24px;
+	padding-top: 16px;
+	padding-bottom: 16px;
 	border-bottom: border();
 }
 </style>

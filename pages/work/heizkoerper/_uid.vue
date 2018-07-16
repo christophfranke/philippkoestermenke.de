@@ -2,7 +2,7 @@
 	<div>
 		<Breadcrump :path="['Work', 'Heizkörper', piece.title[0].text]" />
 		<Gallery :images="gallery" type="tiles" @load="ready = true"/>
-		<RichText :content="piece.description" style="font-size: 24px" v-if="ready" />
+		<RichText :content="piece.description" style="font-size: 16px" v-if="ready" />
 	</div>
 </template>
 

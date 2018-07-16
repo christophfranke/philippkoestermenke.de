@@ -56,9 +56,9 @@ img {
 }
 .number {
 	position: absolute;
-	bottom: 30px;
-	right: 30px;
-	font-size: 24px;
+	bottom: 20px;
+	right: 20px;
+	font-size: 16px;
 	:hover & {
 		color: $black;
 	}

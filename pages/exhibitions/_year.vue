@@ -40,7 +40,7 @@ export default {
 	border-bottom: border();
 }
 .exhibitions {
-	padding-top: 24px;
-	padding-bottom: 24px;
+	padding-top: 16px;
+	padding-bottom: 16px;
 }
 </style>
