@@ -2,7 +2,7 @@
 	<div>
 		<Breadcrump :path="['Work', 'Heizkörper', piece.title[0].text]" />
 		<Gallery :images="gallery" type="tiles" @load="ready = true"/>
-		<RichText :content="piece.description" style="font-size: 16px" v-if="ready" />
+		<RichText :content="piece.description" class="subline" style="font-size: 16px" v-if="ready" />
 	</div>
 </template>
 
@@ -34,5 +34,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.subline {
+	margin-top: 12px;
+}
 </style>

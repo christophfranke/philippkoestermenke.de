@@ -142,7 +142,7 @@ ul {
 	grid-template-columns: 25% 25% 25% 25%;
 	&.mobile {
 		grid-template-columns: 50% 50%;
-		@media (max-width: 700px) {
+		@media (max-width: 550px) {
 				grid-template-columns: 100%;
 		}
 	}
@@ -166,6 +166,10 @@ li {
 	border-bottom: border();
 	a {
 		display: block;
+		padding-top: 16px;
+		padding-bottom: 16px;
+		margin-top: -16px;
+		margin-bottom: -16px;
 	}
 	&.item {
 		position: relative;
