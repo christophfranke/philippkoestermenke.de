@@ -46,6 +46,7 @@
  	methods: {
  		closeAll() {
  			this.baseClasses = ['closed']
+
  			// only allow new hovering after 100ms
  			setTimeout(() => {
  				this.baseClasses = []
