@@ -1,7 +1,7 @@
 <template>
 	<div class="wrapper">
 		<span v-for="crump in parents">
-			{{ crump }} ->
+			{{ crump }} →
 		</span>
 		<span class="last">
 			{{ current }}

@@ -1,7 +1,7 @@
 <template>
 	<div :class="{ gallery: true, [type]: true }">
 		<img :src="currentImage.url" :class="currentImageClass" @load="onImageLoad" :style="imageStyle" ref="image">
-		<div :class="{ next: true, show: hasNextImage, disabled: !imagesLoaded }"><a @click="nextImage">-&gt;</a></div>
+		<div :class="{ next: true, show: hasNextImage, disabled: !imagesLoaded }"><a @click="nextImage">→</a></div>
 	</div>
 </template>
 

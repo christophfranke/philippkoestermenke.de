@@ -158,9 +158,8 @@ ul {
 	}
 }
 li {
-	font-size: 36px;
-	padding-top: 24px;
-	padding-bottom: 24px;
+	padding-top: 16px;
+	padding-bottom: 16px;
 	text-align: center;
 	display: block;
 	background-color: $white;
@@ -176,7 +175,7 @@ li {
 		color: $blue;
 	}
 	&.open > .sub {
-		margin-top: 24px + map-get($border, width);
+		margin-top: 16px + map-get($border, width);
 		border: none;
 		color: $black;
 		text-align: center;
