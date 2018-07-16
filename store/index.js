@@ -21,6 +21,14 @@ const windowWidth = store => {
   }
 }
 
+const windowOverflow = store => {
+  if (process.browser) {
+    window.addEventListener('resize', () => {
+      store.commit('windowOverflow', document.body.clientHeight - window.innerHeight)
+    })
+  }
+}
+
 const koesteDimensions = store => {
   if (process.browser) {
     window.addEventListener('resize', () => {
@@ -42,6 +50,7 @@ export default () => {
     state: {
       data: {},
       windowWidth: null,
+      windowOverflow: false,
       koesteOffset: 75,
       koesteWidth: null,
     },
@@ -53,6 +62,7 @@ export default () => {
       infoPage: ({ data }) => slug => (data.find(doc => doc.type === 'info' && doc.uid === slug) || {}).data,
       heizungsbuch: ({ data }) => (data.find(doc => doc.type === 'heizungsbuch') || {}).data,
       windowWidth: ({ windowWidth }) => windowWidth,
+      windowOverflow: ({ windowOverflow }) => windowOverflow,
       koesteOffset: ({ koesteOffset }) => koesteOffset,
       koesteWidth: ({ koesteWidth }) => koesteWidth
     },
@@ -74,11 +84,14 @@ export default () => {
       windowWidth(state, newWidth) {
         state.windowWidth = newWidth
       },
+      windowOverflow(state, windowOverflow) {
+        state.windowOverflow = windowOverflow
+      },
       updateKoesteDimensions(state, { left, width }) {
         state.koesteOffset = left
         state.koesteWidth = width
       }
     },
-    plugins: [windowWidth, koesteDimensions, dispatchResize],
+    plugins: [windowWidth, koesteDimensions, windowOverflow, dispatchResize],
   })
 }

@@ -2,7 +2,7 @@
 	<div>
 		<Breadcrump :path="['Work', 'Heizungsbuch']" />
 		<Gallery :images="gallery" type="free" @load="ready = true"/>
-		<RichText :content="heizungsbuch.description" class="subline" :style="sublineStyle" v-if="ready" />
+		<RichText :content="heizungsbuch.description" :class="{ subline: true, fixed: isSublineFixed }" :style="sublineStyle" v-if="ready" />
 	</div>
 </template>
 
@@ -28,16 +28,31 @@ export default {
 		},
 		sublineStyle() {
 			return {
-				paddingLeft: `${this.$store.getters.koesteOffset}px`
+				paddingLeft: `${this.$store.getters.koesteOffset}px`,
+				paddingRight: `${this.$store.getters.koesteOffset}px`
 			}
+		},
+		isSublineFixed() {
+			return this.$store.getters.windowOverflow > -45
 		}
 	}
 }
 </script>
 
 <style lang="scss" scoped>
+@import '../../style/definitions';
+
 .subline {
 	font-size: 16px;
-	margin-top: 12px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	&.fixed {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: $white;
+		border-top: border();
+	}
 }
 </style>

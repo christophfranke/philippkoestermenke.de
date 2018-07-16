@@ -28,7 +28,8 @@ export default {
 		},
 		style() {
 			return {
-				paddingLeft: `${this.$store.getters.koesteOffset}px`
+				paddingLeft: `${this.$store.getters.koesteOffset}px`,
+				paddingRight: `${this.$store.getters.koesteOffset}px`
 			}
 		}
 	}
