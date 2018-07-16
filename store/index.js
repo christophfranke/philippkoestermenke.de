@@ -51,7 +51,7 @@ export default () => {
       data: {},
       windowWidth: null,
       windowOverflow: false,
-      koesteOffset: 75,
+      koesteOffset: null,
       koesteWidth: null,
     },
     getters: {

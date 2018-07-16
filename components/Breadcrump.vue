@@ -27,7 +27,8 @@ export default {
 		},
 		style() {
 			return {
-				paddingLeft: `${this.$store.getters.koesteOffset}px`
+				paddingLeft: `${this.$store.getters.koesteOffset}px`,
+				visibility: this.$store.getters.koesteOffset ? 'visible' : 'hidden'
 			}
 		}
 	}

@@ -9,7 +9,8 @@ export default {
 		style() {
 			return {
 				left: `${this.$store.getters.koesteOffset}px`,
-				width: `${this.$store.getters.koesteWidth}px`
+				width: `${this.$store.getters.koesteWidth}px`,
+				visibility: this.$store.getters.koesteWidth ? 'visible' : 'hidden'
 			}
 		}
 	}
