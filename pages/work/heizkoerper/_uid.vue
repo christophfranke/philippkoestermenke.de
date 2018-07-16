@@ -3,6 +3,7 @@
 		<Breadcrump :path="['Work', 'Heizkörper', piece.title[0].text]" />
 		<Gallery :images="gallery" type="tiles" @load="ready = true"/>
 		<RichText :content="piece.description" :class="{ subline: true, fixed: isSublineFixed }" :style="sublineStyle" v-if="ready" />
+		<div v-show="isSublineFixed" class="sublinePlaceholder" />
 	</div>
 </template>
 
@@ -36,7 +37,7 @@ export default {
 			}
 		},
 		isSublineFixed() {
-			return this.$store.getters.windowOverflow > - 45
+			return this.$store.getters.windowOverflow > 0
 		}
 	},
 }
@@ -57,5 +58,8 @@ export default {
 		background-color: $white;
 		border-top: border();
 	}
+}
+.sublinePlaceholder {
+	height: 45px;
 }
 </style>
