@@ -4,35 +4,31 @@
 		<li
 			v-if="mobile"
 			:class="{ item: true, open: isOpen('mobile') }"
-			@mouseover.stop.prevent="open('mobile')"
-			@mouseout.stop.prevent="close('mobile')">
+			@click.stop.prevent="close(); open('mobile')">
 			Menu
 			<ul class="sub">
 				<li :class="{ item: true, open: isOpen('exhibition') }"
-					@mouseover.stop.prevent="open('exhibition', 'mobile')"
-					@mouseout.stop.prevent="close('exhibition', 'mobile')">
+					@click.stop.prevent="close(); open('exhibition', 'mobile')">
 					Exhibitions
 					<ul class="sub">
-						<li v-for="exhibition in exhibitions" @click="close('exhibition', 'mobile')">
+						<li v-for="exhibition in exhibitions" @click.stop="close">
 							<nuxt-link :to="`/exhibitions/${exhibition.uid}`">{{ exhibition.uid }}</nuxt-link>
 						</li>
 					</ul>
 				</li>
 				<li :class="{ item: true, open: isOpen('work') }"
-					@mouseover.stop.prevent="open('work', 'mobile')"
-					@mouseout.stop.prevent="close('work', 'mobile')">
+					@click.stop.prevent="close(); open('work', 'mobile')">
 					Work
 					<ul class="sub">
-						<li @click="close('work', 'mobile')"><nuxt-link to="/work/heizkoerper">Heizkörper</nuxt-link></li>
-						<li @click="close('work', 'mobile')"><nuxt-link to="/work/heizungsbuch">Heizungsbuch</nuxt-link></li>
+						<li @click.stop="close"><nuxt-link to="/work/heizkoerper">Heizkörper</nuxt-link></li>
+						<li @click.stop="close"><nuxt-link to="/work/heizungsbuch">Heizungsbuch</nuxt-link></li>
 					</ul>
 				</li>
 				<li :class="{ item: true, open: isOpen('info') }"
-					@mouseover.stop.prevent="open('info', 'mobile')"
-					@mouseout.stop.prevent="close('info', 'mobile')">
+					@click.stop.prevent="close(); open('info', 'mobile')">
 					Info
 					<ul class="sub">
-						<li v-for="info in infoPages" @click="close('info', 'mobile')">
+						<li v-for="info in infoPages" @click.stop="close">
 							<nuxt-link :to="`/info/${info.uid}`">{{ info.data.title[0].text }}</nuxt-link>
 						</li>
 					</ul>
@@ -43,10 +39,10 @@
 			v-if="!mobile"
 			:class="{ item: true, open: isOpen('exhibition') }"
 			@mouseover.stop.prevent="open('exhibition')"
-			@mouseout.stop.prevent="close('exhibition')">
+			@mouseout.stop.prevent="close">
 			Exhibitions
 			<ul class="sub">
-				<li v-for="exhibition in exhibitions" @click="close('exhibition')">
+				<li v-for="exhibition in exhibitions" @click="close">
 					<nuxt-link :to="`/exhibitions/${exhibition.uid}`">{{ exhibition.uid }}</nuxt-link>
 				</li>
 			</ul>
@@ -55,21 +51,21 @@
 			v-if="!mobile"
 			:class="{ item: true, open: isOpen('work') }"
 			@mouseover.stop.prevent="open('work')"
-			@mouseout.stop.prevent="close('work')">
+			@mouseout.stop.prevent="close">
 			Work
 			<ul class="sub">
-				<li @click="close('work')"><nuxt-link to="/work/heizkoerper">Heizkörper</nuxt-link></li>
-				<li @click="close('work')"><nuxt-link to="/work/heizungsbuch">Heizungsbuch</nuxt-link></li>
+				<li @click="close"><nuxt-link to="/work/heizkoerper">Heizkörper</nuxt-link></li>
+				<li @click="close"><nuxt-link to="/work/heizungsbuch">Heizungsbuch</nuxt-link></li>
 			</ul>
 		</li>
 		<li
 			v-if="!mobile"
 			:class="{ item: true, open: isOpen('info') }"
 			@mouseover.stop.prevent="open('info')"
-			@mouseout.stop.prevent="close('info')">
+			@mouseout.stop.prevent="close">
 			Info
 			<ul class="sub">
-				<li v-for="info in infoPages" @click="close('info')">
+				<li v-for="info in infoPages" @click="close">
 					<nuxt-link :to="`/info/${info.uid}`">{{ info.data.title[0].text }}</nuxt-link>
 				</li>
 			</ul>
@@ -101,14 +97,22 @@ export default {
  		},
  	},
 
+ 	mounted() {
+ 		if (process.browser) {
+ 			window.addEventListener('click', () => {
+ 				this.close();
+ 			})
+ 		}
+ 	},
+
  	methods: {
  		open(...args) {
  			args.forEach((name) => {
 	 			this.$set(this.openSubs, name, true)
  			})
  		},
- 		close(...args) {
- 			args.forEach((name) => {
+ 		close() {
+ 			Object.keys(this.openSubs).forEach((name) => {
 	 			this.$set(this.openSubs, name, false)
  			})
  		},
@@ -128,8 +132,8 @@ ul {
 	grid-template-columns: 25% 25% 25% 25%;
 	&.mobile {
 		grid-template-columns: 50% 50%;
-		@media (max-width: 550px) {
-				grid-template-columns: 100%;
+		@include breakpoint(s) {	
+			grid-template-columns: 100%;
 		}
 	}
 	justify-content: space-between;
@@ -160,7 +164,7 @@ li {
 	&.item {
 		position: relative;
 		border-left: border();
-		@media (max-width: 550px) {
+		@include breakpoint(s) {
 			border-left: none;
 		}
 	}
@@ -177,13 +181,12 @@ li {
 		justify-content: flex-start;
 		li {
 			border-left: border();
-			@media (max-width: 550px) {
+			@include breakpoint(s) {
 				border-left: none;
 			}
 		}
 		border-right: border();
 		li {
-			// width: 100%;
 			border-bottom: border();
 		}
 	}

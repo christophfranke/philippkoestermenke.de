@@ -1,0 +1,10 @@
+$breakpoints: (
+	xs: 360px,
+	s: 550px,
+);
+
+@mixin breakpoint($size) {
+	@media (max-width: #{map-get($breakpoints, $size)}) {
+		@content;
+	}
+}

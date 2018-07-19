@@ -1,7 +1,7 @@
 <template>
 	<div :class="{ gallery: true, [type]: true }">
 		<img :src="currentImage.url" :class="currentImageClass" @load="onImageLoad" :style="imageStyle" ref="image">
-		<div :class="{ next: true, show: hasNextImage, disabled: !imagesLoaded }"><a @click="nextImage">→</a></div>
+		<div :class="{ next: true, show: hasNextImage, disabled: !imagesLoaded, arrowIsFixed: arrowIsFixed }"><a @click="nextImage">→</a></div>
 	</div>
 </template>
 
@@ -44,6 +44,9 @@ export default {
 				}
 			}
 			return {}
+		},
+		arrowIsFixed() {
+			return this.$store.getters.windowOverflow > 0
 		}
 	},
 
@@ -86,6 +89,7 @@ export default {
 
 .gallery {
 	display: grid;
+	position: relative;
 	&.tiles {
 		grid-template-columns: 25% 50% 25%;
 	}
@@ -120,12 +124,18 @@ export default {
 		align-self: stretch;
 		display: flex;
 		align-items: center;
+		&.arrowIsFixed a {			
+			position: fixed;
+			right: 12.5%;
+		}
 		a {
 			cursor: pointer;
 			display: none;
 		}
 		&.show a {
 			display: inline;
+			top: 50%;
+			transform: translateX(50%);
 		}
 		&.disabled a {
 			display: none;
@@ -152,11 +162,19 @@ export default {
 		img.square {
 			grid-column-start: 3;
 			grid-column-end: 4;
+			@include breakpoint(xs) {			
+				grid-column-start: 1;
+				grid-column-end: 7;
+			}
 		}
 
 		img.wide {
 			grid-column-start: 2;
 			grid-column-end: 5;
+			@include breakpoint(xs){
+				grid-column-start: 1;
+				grid-column-end: 7;
+			}
 		}
 
 		.next {
