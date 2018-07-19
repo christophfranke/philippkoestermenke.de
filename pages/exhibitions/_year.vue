@@ -36,13 +36,13 @@ export default {
 @import '../../style/definitions';
 
 .dot {
-	margin-right: 5px;
+	margin-right: spacer(a);
 }
 .wrapper {
 	border-bottom: border();
 }
 .exhibitions {
-	padding-top: 16px;
-	padding-bottom: 16px;
+	padding-top: spacer(c);
+	padding-bottom: spacer(c);
 }
 </style>

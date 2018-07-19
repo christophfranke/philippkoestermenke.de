@@ -154,18 +154,18 @@ ul {
 	}
 }
 li {
-	padding-top: 16px;
-	padding-bottom: 16px;
+	padding-top: spacer(c);
+	padding-bottom: spacer(c);
 	text-align: center;
 	display: block;
 	background-color: $white;
 	border-bottom: border();
 	a {
 		display: block;
-		padding-top: 16px;
-		padding-bottom: 16px;
-		margin-top: -16px;
-		margin-bottom: -16px;
+		padding-top: spacer(c);
+		padding-bottom: spacer(c);
+		margin-top: - spacer(c);
+		margin-bottom: - spacer(c);
 	}
 	&.item {
 		position: relative;
@@ -178,7 +178,7 @@ li {
 		color: $blue;
 	}
 	&.open > .sub {
-		margin-top: 16px + map-get($border, width);
+		margin-top: spacer(c) + map-get($border, width);
 		border: none;
 		color: $black;
 		text-align: center;

@@ -29,8 +29,8 @@ export default {
 @import '../../style/definitions';
 
 .info {
-	padding-top: 16px;
-	padding-bottom: 16px;
+	padding-top: spacer(c);
+	padding-bottom: spacer(c);
 	border-bottom: border();
 }
 </style>

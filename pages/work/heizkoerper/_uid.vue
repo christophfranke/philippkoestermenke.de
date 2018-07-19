@@ -44,9 +44,9 @@ export default {
 @import '../../../style/definitions';
 
 .subline {
-	font-size: 16px;
-	padding-top: 12px;
-	padding-bottom: 12px;
+	font-size: spacer(c);
+	padding-top: spacer(b);
+	padding-bottom: spacer(b);
 	&.fixed {
 		position: fixed;
 		bottom: 0;

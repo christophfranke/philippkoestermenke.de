@@ -56,9 +56,9 @@ img {
 }
 .number {
 	position: absolute;
-	bottom: 20px;
-	right: 20px;
-	font-size: 16px;
+	bottom: spacer(c);
+	right: spacer(c);
+	font-size: .66rem;
 	:hover & {
 		color: $black;
 	}

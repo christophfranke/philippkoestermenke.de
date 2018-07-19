@@ -19,10 +19,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-	img.logo {
-		height: auto;
-		position: absolute;
-		bottom: 24px;
-		transform: scale(1.1);
-	}
+@import '../style/definitions';
+
+img.logo {
+	height: auto;
+	position: absolute;
+	bottom: spacer(c);
+	transform: scale(1.1);
+}
 </style>

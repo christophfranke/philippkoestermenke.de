@@ -1,0 +1,12 @@
+$spacers: (
+	a: 5px,
+	b: 12px,
+	c: 16px,
+	d: 24px,
+	e: 55px,
+);
+
+@function spacer($size) {
+	@return map-get($spacers, $size);
+	// @return 16px;
+}

@@ -52,8 +52,8 @@ export default {
 	color: $blue;
 }
 .wrapper {
-	padding-top: 16px;
-	padding-bottom: 16px;
+	padding-top: spacer(c);
+	padding-bottom: spacer(c);
 	border-bottom: border();
 }
 </style>

@@ -156,8 +156,8 @@ export default {
 	}
 
 	&.free {
-		padding-top: 54px;
-		padding-bottom: 56px;
+		padding-top: space(e);
+		padding-bottom: space(e);
 
 		img.square {
 			grid-column-start: 3;
