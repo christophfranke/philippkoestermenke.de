@@ -15,6 +15,9 @@ body {
 	font-size: 24px;
 	background-color: $white;
 	color: $black;
+	@include breakpoint(s) {
+		font-size: 20px;
+	}
 }
 
 a {
