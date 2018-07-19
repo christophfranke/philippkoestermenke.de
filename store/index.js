@@ -24,7 +24,7 @@ const windowWidth = store => {
 const windowOverflow = store => {
   if (process.browser) {
     window.addEventListener('resize', () => {
-      store.commit('windowOverflow', document.body.clientHeight - window.innerHeight)
+      store.dispatch('updateWindowOverflow')
     })
   }
 }
@@ -78,6 +78,9 @@ export default () => {
             const width = Math.round(rect.right - rect.left)
             commit('updateKoesteDimensions', { left, width })
           })
+      },
+      updateWindowOverflow({ commit, }) {
+        commit('windowOverflow', document.body.clientHeight - window.innerHeight)
       }
     },
     mutations: {

@@ -73,6 +73,9 @@ export default {
 			this.imagesLoaded = true
 			this.updateImageClass()
 			this.$emit('load')
+			this.$nextTick(() => {
+				this.$store.dispatch('updateWindowOverflow')
+			})
 		},
 	}
 }
