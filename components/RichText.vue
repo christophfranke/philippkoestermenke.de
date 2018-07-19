@@ -23,7 +23,12 @@
 
 <style lang="scss">
 @import '../style/definitions';
-.cms-content a {
-	color: $blue;
+.cms-content{
+	a {
+		color: $blue;
+	}
+	p {
+		line-height: 32px;
+	}
 }
 </style>
