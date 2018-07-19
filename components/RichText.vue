@@ -1,5 +1,5 @@
 <template>
-	<div v-html="html" />
+	<div class="cms-content" v-html="html" />
 </template>
 
 <script>
@@ -20,3 +20,10 @@
 		},
 	}
 </script>
+
+<style lang="scss">
+@import '../style/definitions';
+.cms-content a {
+	color: $blue;
+}
+</style>

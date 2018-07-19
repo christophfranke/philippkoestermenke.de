@@ -64,7 +64,13 @@ export default () => {
       windowWidth: ({ windowWidth }) => windowWidth,
       windowOverflow: ({ windowOverflow }) => windowOverflow,
       koesteOffset: ({ koesteOffset }) => koesteOffset,
-      koesteWidth: ({ koesteWidth }) => koesteWidth
+      koesteWidth: ({ koesteWidth }) => koesteWidth,
+      contentOffset: ({ koesteOffset, windowWidth }) => windowWidth > 550 ? koesteOffset : 16,
+      offsetStyle: (state, { contentOffset, koesteOffset }) => ({
+        paddingLeft: `${contentOffset}px`,
+        paddingRight: `${contentOffset}px`,
+        visibility: koesteOffset ? 'visible' : 'hidden'
+      })
     },
     actions: {
       nuxtServerInit({ state }) {

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<Breadcrump :path="['Work', 'Heizkörper', piece.title[0].text]" />
+		<Breadcrump :path="['Work', { name: 'Heizkörper', url: '/work/heizkoerper' }, piece.title[0].text]" />
 		<Gallery :images="gallery" type="tiles" @load="ready = true"/>
 		<RichText :content="piece.description" :class="{ subline: true, fixed: isSublineFixed }" :style="sublineStyle" v-if="ready" />
 		<div v-show="isSublineFixed" class="sublinePlaceholder" />
@@ -31,10 +31,7 @@ export default {
 			return this.piece.gallery.map(entry => entry.image)
 		},
 		sublineStyle() {
-			return {
-				paddingLeft: `${this.$store.getters.koesteOffset}px`,
-				paddingRight: `${this.$store.getters.koesteOffset}px`
-			}
+			return this.$store.getters.offsetStyle
 		},
 		isSublineFixed() {
 			return this.$store.getters.windowOverflow > 0

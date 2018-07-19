@@ -20,11 +20,7 @@ export default {
 			return this.$store.getters.infoPage(this.slug)
 		},
 		style() {
-			return {
-				paddingLeft: `${this.$store.getters.koesteOffset}px`,
-				paddingRight: `${this.$store.getters.koesteOffset}px`,
-				visibility: this.$store.getters.koesteOffset ? 'visible' : 'hidden'
-			}
+			return this.$store.getters.offsetStyle
 		}
 	}
 }

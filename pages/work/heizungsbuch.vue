@@ -28,10 +28,7 @@ export default {
 			return this.heizungsbuch.gallery.map(entry => entry.image)
 		},
 		sublineStyle() {
-			return {
-				paddingLeft: `${this.$store.getters.koesteOffset}px`,
-				paddingRight: `${this.$store.getters.koesteOffset}px`
-			}
+			return this.$store.getters.offsetStyle
 		},
 		isSublineFixed() {
 			return this.$store.getters.windowOverflow > 0

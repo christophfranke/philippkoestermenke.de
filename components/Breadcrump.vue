@@ -1,10 +1,11 @@
 <template>
 	<div class="wrapper" :style="style">
 		<span v-for="crump in parents">
-			{{ crump }} →
+			<nuxt-link :to="crump.url" v-if="crump.url">{{ crump.name }}</nuxt-link>
+			<span v-if="!crump.url">{{ crump.name }}</span> →
 		</span>
 		<span class="last">
-			{{ current }}
+			{{ current.name }}
 		</span>
 	</div>
 </template>
@@ -20,15 +21,25 @@ export default {
 	},
 	computed: {
 		parents() {
-			return this.path.slice(0, this.path.length - 1)
+			return this.path.slice(0, this.path.length - 1).map(this.expandItem)
 		},
 		current() {
-			return this.path[this.path.length - 1]
+			return this.expandItem(this.path[this.path.length - 1])
 		},
 		style() {
-			return {
-				paddingLeft: `${this.$store.getters.koesteOffset}px`,
-				visibility: this.$store.getters.koesteOffset ? 'visible' : 'hidden'
+			return this.$store.getters.offsetStyle
+		}
+	},
+
+	methods: {
+		expandItem(item) {
+			if (typeof item === 'string') {
+				return {
+					name: item,
+					url: null
+				}
+			} else {
+				return item
 			}
 		}
 	}
