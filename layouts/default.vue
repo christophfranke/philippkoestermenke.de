@@ -2,6 +2,7 @@
 	<div>
 		<Menu />
 		<nuxt/>
+		<Logo />
 	</div>
 </template>
 

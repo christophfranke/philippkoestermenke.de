@@ -38,6 +38,7 @@
 		<li
 			v-if="!mobile"
 			:class="{ item: true, open: isOpen('exhibition') }"
+			@click.stop
 			@mouseover.stop.prevent="open('exhibition')"
 			@mouseout.stop.prevent="close">
 			Exhibitions
@@ -50,6 +51,7 @@
 		<li
 			v-if="!mobile"
 			:class="{ item: true, open: isOpen('work') }"
+			@click.stop
 			@mouseover.stop.prevent="open('work')"
 			@mouseout.stop.prevent="close">
 			Work
@@ -61,6 +63,7 @@
 		<li
 			v-if="!mobile"
 			:class="{ item: true, open: isOpen('info') }"
+			@click.stop
 			@mouseover.stop.prevent="open('info')"
 			@mouseout.stop.prevent="close">
 			Info
@@ -114,6 +117,9 @@ export default {
  		close() {
  			Object.keys(this.openSubs).forEach((name) => {
 	 			this.$set(this.openSubs, name, false)
+ 			})
+ 			this.$nextTick(() => {
+ 				this.$store.dispatch('updateWindowOverflow')
  			})
  		},
  		isOpen(name) {

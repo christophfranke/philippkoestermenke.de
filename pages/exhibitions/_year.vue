@@ -6,7 +6,6 @@
 				<RichText :content="exhibition" />
 			</div>
 		</div>
-		<Logo />
 	</div>
 </template>
 

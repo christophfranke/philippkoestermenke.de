@@ -10,7 +10,8 @@ export default {
 			return {
 				left: `${this.$store.getters.koesteOffset}px`,
 				width: `${this.$store.getters.koesteWidth}px`,
-				visibility: this.$store.getters.koesteWidth ? 'visible' : 'hidden'
+				visibility: this.$store.getters.koesteWidth ? 'visible' : 'hidden',
+				display: -this.$store.getters.windowOverflow > 0.6*this.$store.getters.koesteWidth ? 'block' : 'none'
 			}
 		}
 	}
