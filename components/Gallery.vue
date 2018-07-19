@@ -92,6 +92,9 @@ export default {
 	position: relative;
 	&.tiles {
 		grid-template-columns: 25% 50% 25%;
+		@include breakpoint(s) {
+			grid-template-columns: 215fr 108fr;
+		}
 	}
 	&.free {
 		grid-template-columns: 376fr 292fr 585fr 292fr 116fr 259fr;
@@ -118,12 +121,20 @@ export default {
 		&.square {
 			grid-column-start: 2;
 			grid-column-end: 3;
+			@include breakpoint(s) {
+				border-right: border();
+			}
 		}
 	}
 	.next {
 		align-self: stretch;
 		display: flex;
 		align-items: center;
+		@include breakpoint(s) {
+			position: absolute;
+	    top: 50%;
+	    right: 50%;
+		}
 		&.arrowIsFixed a {			
 			position: fixed;
 			right: 12.5%;
@@ -147,22 +158,45 @@ export default {
 			grid-column-start: 3;
 			grid-column-end: 3;
 			border-left: border();
+			@include breakpoint(s) {
+		    border-left: none;
+		    grid-column-start: 2;
+		    grid-column-end: 2;
+			}
 			justify-content: center;
 		}
 
 		img.square {
 			border-left: border();
+			@include breakpoint(s) {
+				grid-column-start: 1;
+				grid-column-end: 2;
+			}
+		}
+		img.wide {
+			@include breakpoint(s) {
+				grid-column-start: 1;
+				grid-column-end: 3;
+			}
 		}
 	}
 
 	&.free {
-		padding-top: space(e);
-		padding-bottom: space(e);
+		padding-top: spacer(e);
+		padding-bottom: spacer(e);
+		@include breakpoint(m) {
+			padding-top: spacer(d);
+			padding-bottom: spacer(d);
+		}
+		@include breakpoint(s) {
+			padding-top: 0;
+			padding-bottom: 0;
+		}
 
 		img.square {
 			grid-column-start: 3;
 			grid-column-end: 4;
-			@include breakpoint(xs) {			
+			@include breakpoint(s) {			
 				grid-column-start: 1;
 				grid-column-end: 7;
 			}
@@ -171,7 +205,7 @@ export default {
 		img.wide {
 			grid-column-start: 2;
 			grid-column-end: 5;
-			@include breakpoint(xs){
+			@include breakpoint(s){
 				grid-column-start: 1;
 				grid-column-end: 7;
 			}

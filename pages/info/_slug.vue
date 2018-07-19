@@ -32,5 +32,6 @@ export default {
 	padding-top: spacer(c);
 	padding-bottom: spacer(c);
 	border-bottom: border();
+	overflow-x: hidden;
 }
 </style>

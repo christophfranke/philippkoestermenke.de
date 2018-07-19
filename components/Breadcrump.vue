@@ -55,5 +55,8 @@ export default {
 	padding-top: spacer(c);
 	padding-bottom: spacer(c);
 	border-bottom: border();
+	@include breakpoint(s) {
+		text-align: center;
+	}
 }
 </style>

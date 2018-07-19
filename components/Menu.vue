@@ -6,11 +6,11 @@
 			:class="{ item: true, open: isOpen('mobile') }"
 			@click.stop.prevent="close(); open('mobile')">
 			Menu
-			<ul class="sub">
+			<ul class="sub mostRight">
 				<li :class="{ item: true, open: isOpen('exhibition') }"
 					@click.stop.prevent="close(); open('exhibition', 'mobile')">
 					Exhibitions
-					<ul class="sub">
+					<ul class="sub mostRight">
 						<li v-for="exhibition in exhibitions" @click.stop="close">
 							<nuxt-link :to="`/exhibitions/${exhibition.uid}`">{{ exhibition.uid }}</nuxt-link>
 						</li>
@@ -19,7 +19,7 @@
 				<li :class="{ item: true, open: isOpen('work') }"
 					@click.stop.prevent="close(); open('work', 'mobile')">
 					Work
-					<ul class="sub">
+					<ul class="sub mostRight">
 						<li @click.stop="close"><nuxt-link to="/work/heizkoerper">Heizkörper</nuxt-link></li>
 						<li @click.stop="close"><nuxt-link to="/work/heizungsbuch">Heizungsbuch</nuxt-link></li>
 					</ul>
@@ -27,7 +27,7 @@
 				<li :class="{ item: true, open: isOpen('info') }"
 					@click.stop.prevent="close(); open('info', 'mobile')">
 					Info
-					<ul class="sub">
+					<ul class="sub mostRight">
 						<li v-for="info in infoPages" @click.stop="close">
 							<nuxt-link :to="`/info/${info.uid}`">{{ info.data.title[0].text }}</nuxt-link>
 						</li>
@@ -67,7 +67,7 @@
 			@mouseover.stop.prevent="open('info')"
 			@mouseout.stop.prevent="close">
 			Info
-			<ul class="sub">
+			<ul class="sub mostRight">
 				<li v-for="info in infoPages" @click="close">
 					<nuxt-link :to="`/info/${info.uid}`">{{ info.data.title[0].text }}</nuxt-link>
 				</li>
@@ -192,6 +192,9 @@ li {
 			}
 		}
 		border-right: border();
+		&.mostRight {
+			border-right: none;
+		}
 		li {
 			border-bottom: border();
 		}
