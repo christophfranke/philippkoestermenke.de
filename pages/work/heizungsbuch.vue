@@ -41,7 +41,7 @@ export default {
 @import '../../style/definitions';
 
 .subline {
-	font-size: .66rem;
+	font-size: 16px;
 	padding-top: spacer(b);
 	padding-bottom: spacer(b);
 	&.fixed {

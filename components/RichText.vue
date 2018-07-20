@@ -28,7 +28,7 @@
 		color: $blue;
 	}
 	p {
-		line-height: 32px;
+		line-height: 1.35;
 	}
 }
 </style>
