@@ -1,7 +1,7 @@
 <template>
 	<div class="wrapper">
 		<Breadcrump :path="['Exhibitions', year]" />
-		<div class="exhibitions" :style="style">
+		<div :class="{ single: exhibitions.length === 1, exhibitions: true }" :style="style">
 			<div v-for="exhibition in exhibitions" class="line">
 				<RichText :content="exhibition" />
 			</div>
@@ -44,5 +44,8 @@ export default {
 .exhibitions {
 	padding-top: spacer(c);
 	padding-bottom: spacer(c);
+	&.single {
+		padding-bottom: spacer(c) - 1px;
+	}
 }
 </style>

@@ -6,12 +6,22 @@
 export default {
 	name: 'Logo',
 	computed: {
+		logoWidth() {
+			if (this.$store.getters.windowWidth > 1024) {
+				return this.$store.getters.windowWidth / 4
+			}
+			if (this.$store.getters.windowWidth > 360) {
+				return this.$store.getters.windowWidth / 2
+			}
+			return this.$store.getters.windowWidth - 32
+		},
 		style() {
+			const logoAspectRatio = 0.6
 			return {
-				left: `${this.$store.getters.koesteOffset}px`,
-				width: `${this.$store.getters.koesteWidth}px`,
+				left: `${this.$store.getters.contentOffset}px`,
+				// width: `${this.$store.getters.koesteWidth}px`,
 				visibility: this.$store.getters.koesteWidth ? 'visible' : 'hidden',
-				display: -this.$store.getters.windowOverflow > 0.6*this.$store.getters.koesteWidth ? 'block' : 'none'
+				display: -this.$store.getters.windowOverflow > logoAspectRatio * this.logoWidth ? 'block' : 'none'
 			}
 		}
 	}
@@ -25,6 +35,12 @@ img.logo {
 	height: auto;
 	position: absolute;
 	bottom: spacer(c);
-	transform: scale(1.1);
+	width: 25%;
+	@include breakpoint(l) {
+		width: 50%;
+	}
+	@include breakpoint(xs) {
+		width: calc(100% - #{2*spacer(c)});
+	}
 }
 </style>
