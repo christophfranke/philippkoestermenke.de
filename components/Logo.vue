@@ -21,7 +21,6 @@ export default {
 				left: `${this.$store.getters.contentOffset}px`,
 				// width: `${this.$store.getters.koesteWidth}px`,
 				visibility: this.$store.getters.koesteWidth ? 'visible' : 'hidden',
-				display: -this.$store.getters.windowOverflow > logoAspectRatio * this.logoWidth ? 'block' : 'none'
 			}
 		}
 	}
