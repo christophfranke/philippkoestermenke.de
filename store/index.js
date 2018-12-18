@@ -53,6 +53,7 @@ export default () => {
       windowOverflow: false,
       koesteOffset: null,
       koesteWidth: null,
+      isMenuOpen: false,
     },
     getters: {
       piece: ({ data }) => uid => (data.find(doc => doc.type === 'heizkoerper' && doc.uid === uid) || {}).data,
@@ -63,6 +64,7 @@ export default () => {
       heizungsbuch: ({ data }) => (data.find(doc => doc.type === 'heizungsbuch') || {}).data,
       windowWidth: ({ windowWidth }) => windowWidth,
       windowOverflow: ({ windowOverflow }) => windowOverflow,
+      isMenuOpen: ({ isMenuOpen }) => isMenuOpen,
       koesteOffset: ({ koesteOffset }) => koesteOffset,
       koesteWidth: ({ koesteWidth }) => koesteWidth,
       contentOffset: ({ koesteOffset, windowWidth }) => windowWidth > 550 ? koesteOffset : 16,
@@ -99,7 +101,10 @@ export default () => {
       updateKoesteDimensions(state, { left, width }) {
         state.koesteOffset = left
         state.koesteWidth = width
-      }
+      },
+      updateMenuState(state, isMenuOpen) {
+        state.isMenuOpen = isMenuOpen
+      },
     },
     plugins: [windowWidth, koesteDimensions, windowOverflow, dispatchResize],
   })

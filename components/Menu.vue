@@ -113,11 +113,13 @@ export default {
  			args.forEach((name) => {
 	 			this.$set(this.openSubs, name, true)
  			})
+ 			this.$store.commit('updateMenuState', true)
  		},
  		close() {
  			Object.keys(this.openSubs).forEach((name) => {
 	 			this.$set(this.openSubs, name, false)
  			})
+			this.$store.commit('updateMenuState', false)
  			this.$nextTick(() => {
  				this.$store.dispatch('updateWindowOverflow')
  			})

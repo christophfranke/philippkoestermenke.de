@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<Menu />
-		<nuxt/>
+		<nuxt v-show="visible" />
 	</div>
 </template>
 
@@ -9,7 +9,13 @@
 import components from '../components';
 
 export default {
-	components
+	components,
+	computed: {
+		visible() {
+			const width = this.$store.getters.windowWidth
+			return !width || width > 550 || !this.$store.getters.isMenuOpen
+		}
+	}
 }
 </script>
 
