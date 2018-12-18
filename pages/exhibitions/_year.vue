@@ -6,7 +6,6 @@
 				<RichText :content="exhibition" />
 			</div>
 		</div>
-		<Logo v-if="exhibitions.length < 2 || $store.getters.windowWidth > 550" />
 	</div>
 </template>
 
