@@ -33,7 +33,7 @@ export default {
 		numTilesHorizontal() {
 			const w = this.$store.getters.windowWidth
 			const all = this.$store.getters.heizkoerper.length // we dont have a window width yet, so we assume all tiles next to each other
-			return w ? w > 1024 ? 4 : w > 550 ? 2 : 1 : (all + 1)
+			return w ? w > 1024 ? 3 : w > 550 ? 2 : 1 : (all + 1)
 		},
 		imageClass() {
 			return Object.values(this.heizkoerper).reduce((obj, { uid }) => ({ ...obj, [uid]: {
@@ -55,12 +55,12 @@ export default {
 
 .work {
 	display: grid;
-	grid-template-columns: 25% 25% 25% 25%;
+	grid-template-columns: 1fr 1fr 1fr;
 	@include breakpoint(l) {
-		grid-template-columns: 50% 50%;
+		grid-template-columns: 1fr 1fr;
 	}
 	@include breakpoint(s) {
-		grid-template-columns: 100%;
+		grid-template-columns: 1fr;
 	}
 }
 img {
