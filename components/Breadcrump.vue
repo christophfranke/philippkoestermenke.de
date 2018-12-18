@@ -21,7 +21,9 @@ export default {
 	},
 	computed: {
 		parents() {
-			return this.path.slice(0, this.path.length - 1).map(this.expandItem)
+			return this.path.slice(0, this.path.length - 1)
+				.filter((item, index) => this.$store.getters.windowWidth > 550 || index >= this.path.length - 2)
+				.map(this.expandItem)
 		},
 		current() {
 			return this.expandItem(this.path[this.path.length - 1])
@@ -55,6 +57,7 @@ export default {
 	padding-top: spacer(c);
 	padding-bottom: spacer(c);
 	border-bottom: border();
+	white-space: nowrap;
 	@include breakpoint(s) {
 		text-align: center;
 	}
