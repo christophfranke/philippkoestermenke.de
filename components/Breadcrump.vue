@@ -1,12 +1,14 @@
 <template>
-	<div class="wrapper" :style="style">
-		<span v-for="crump in parents">
-			<nuxt-link :to="crump.url" v-if="crump.url">{{ crump.name }}</nuxt-link>
-			<span v-if="!crump.url">{{ crump.name }}</span> →
-		</span>
-		<span class="last">
-			{{ current.name }}
-		</span>
+	<div class="wrapper">
+		<div class="offset" :style="style">
+			<span v-for="crump in parents">
+				<nuxt-link :to="crump.url" v-if="crump.url">{{ crump.name }}</nuxt-link>
+				<span v-if="!crump.url">{{ crump.name }}</span> →
+			</span>
+			<span class="last">
+				{{ current.name }}
+			</span>
+		</div>
 	</div>
 </template>
 
