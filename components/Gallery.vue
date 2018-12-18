@@ -117,6 +117,7 @@ export default {
 		&.wide {
 			grid-column-start: 1;
 			grid-column-end: 3;
+			transform: translateX(1px);
 		}
 		&.square {
 			grid-column-start: 2;
