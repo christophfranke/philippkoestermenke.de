@@ -2,7 +2,6 @@
 	<div>
 		<Breadcrump :path="['Info', page.title[0].text]" />
 		<RichText :content="page.content" :style="style" class="info" />
-		<Logo />
 	</div>
 </template>
 
