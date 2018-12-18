@@ -6,7 +6,7 @@
 				v-for="(hk, index) in heizkoerper"
 				:to="`/work/heizkoerper/${hk.uid}`"
 				:key="hk.uid"
-				:class="{ hasLeftBorder: index % 4, hasBottomBorder: true, link: true }">
+				:class="{ hasLeftBorder: index % numTilesHorizontal, hasBottomBorder: true, link: true }">
 				<img :src="hk.data.thumb.url" @load="onImageLoad(hk.uid)" :class="imageClass[hk.uid]">
 				<span class="number">{{ index + 1 }}</span>
 			</nuxt-link>
@@ -31,7 +31,9 @@ export default {
 			return this.$store.getters.heizkoerper
 		},
 		numTilesHorizontal() {
-			return 4
+			const w = this.$store.getters.windowWidth
+			const all = this.$store.getters.heizkoerper.length // we dont have a window width yet, so we assume all tiles next to each other
+			return w ? w > 1024 ? 4 : w > 550 ? 2 : 1 : (all + 1)
 		},
 		imageClass() {
 			return Object.values(this.heizkoerper).reduce((obj, { uid }) => ({ ...obj, [uid]: {
