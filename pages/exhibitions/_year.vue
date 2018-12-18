@@ -6,6 +6,7 @@
 				<RichText :content="exhibition" />
 			</div>
 		</div>
+		<Logo v-if="exhibitions.length < 2 || $store.getters.windowWidth > 550" />
 	</div>
 </template>
 
@@ -24,6 +25,7 @@ export default {
  				.find(doc => doc.uid === this.year).data.exhibitions
  				.map(exhibition => exhibition.exhibition)
  				.map(paragraphs => paragraphs.map(data => ({ ...data, text: `● ${data.text}`})))
+ 				// .filter((item, index) => index > 1)
 		},
 		style() {
 			return this.$store.getters.offsetStyle
