@@ -44,7 +44,6 @@ export default {
 	},
 	methods: {
 		onImageLoad(uid) {
-			console.log('loaded', uid)
 			this.$set(this.loaded, uid, true)
 		}
 	}
