@@ -35,8 +35,11 @@ export default {
 .work {
 	display: grid;
 	grid-template-columns: 25% 25% 25% 25%;
-	@media (max-width: 1025px) {
+	@include breakpoint(l) {
 		grid-template-columns: 50% 50%;
+	}
+	@include breakpoint(s) {
+		grid-template-columns: 100%;
 	}
 }
 img {
