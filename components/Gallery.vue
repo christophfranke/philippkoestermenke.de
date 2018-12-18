@@ -38,9 +38,15 @@ export default {
 		},
 		imageStyle() {
 			if (!this.imagesLoaded) {
+				if(this.currentWidth && this.currentHeight) {				
+					return {
+						width: `${this.currentWidth}px`,
+						height: `${this.currentHeight}px`,
+					}
+				}
 				return {
-					width: `${this.currentWidth}px`,
-					height: `${this.currentHeight}px`,
+					width: '50vw',
+					height: '50vw'
 				}
 			}
 			return {}
