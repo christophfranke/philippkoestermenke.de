@@ -26,6 +26,9 @@
 .cms-content{
 	a {
 		color: $blue;
+		&:hover{
+			color: $black;
+		}
 	}
 	p {
 		line-height: 1.35;

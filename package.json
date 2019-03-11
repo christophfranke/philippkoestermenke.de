@@ -20,6 +20,7 @@
     "nuxt": "^1.4.1",
     "prismic-dom": "^2.1.0",
     "prismic-javascript": "^1.5.0",
-    "sass-loader": "^7.0.3"
+    "sass-loader": "^7.0.3",
+    "vue-carousel": "^0.18.0-alpha"
   }
 }

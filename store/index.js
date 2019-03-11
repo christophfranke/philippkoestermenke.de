@@ -75,7 +75,13 @@ export default () => {
         paddingLeft: `${contentOffset}px`,
         paddingRight: `${contentOffset}px`,
         visibility: koesteOffset ? 'visible' : 'hidden'
-      })
+      }),
+      breakpoint: ({ windowWidth }) => windowWidth ? Object.entries({
+        xs: 360,
+        s: 550,
+        m: 800,
+        l: 1024,
+      }).reverse().reduce((result, [name, width]) => windowWidth <= width ? name : result, 'xl') : null
     },
     actions: {
       nuxtServerInit({ state }) {

@@ -1,13 +1,19 @@
 <template>
 	<div :class="{ gallery: true, [type]: true }">
-		<img :src="currentImage.url" :class="currentImageClass" @load="onImageLoad" :style="imageStyle" ref="image">
+		<div :class="currentImageClass" :style="imageStyle" ref="image">
+			<ResponsiveImage :image="currentImage" @load="onImageLoad" />
+		</div>
 		<div :class="{ next: true, show: hasNextImage, disabled: !imagesLoaded, arrowIsFixed: arrowIsFixed }"><a @click="nextImage">→</a></div>
 	</div>
 </template>
 
 <script>
+import components from '../components'
+
 export default {
 	name: 'Gallery',
+	components,
+
 	props: {
 		images: {
 			type: Array,

@@ -8,7 +8,6 @@
 				:key="hk.uid"
 				:class="{ hasLeftBorder: index % numTilesHorizontal, hasBottomBorder: true, link: true }">
 				<img :src="hk.data.thumb.url" @load="onImageLoad(hk.uid)" :class="imageClass[hk.uid]">
-				<span class="number">{{ index + 1 }}</span>
 			</nuxt-link>
 			<div :class="{ hasLeftBorder: heizkoerper.length % numTilesHorizontal }" />
 		</div>
@@ -81,17 +80,5 @@ img {
 .link {
 	display: block;
 	position: relative;
-}
-.number {
-	position: absolute;
-	bottom: spacer(c);
-	right: spacer(c);
-	font-size: 1rem;
-	@include breakpoint(s) {
-		font-size: 15px;
-	}
-	:hover & {
-		color: $black;
-	}
 }
 </style>
