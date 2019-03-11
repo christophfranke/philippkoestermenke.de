@@ -86,7 +86,7 @@ img {
 	position: absolute;
 	bottom: spacer(c);
 	right: spacer(c);
-	font-size: .66rem;
+	font-size: 1rem;
 	:hover & {
 		color: $black;
 	}
