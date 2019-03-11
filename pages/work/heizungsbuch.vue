@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<Breadcrump :path="['Work', 'Heizungsbuch']" />
+		<Breadcrump :path="[{ name: 'Work', menu: 'work' }, 'Heizungsbuch']" />
 		<Gallery :images="gallery" type="free" @load="ready = true"/>
 		<RichText :content="heizungsbuch.description" :class="{ subline: true, fixed: isSublineFixed }" :style="sublineStyle" v-if="ready" />
 		<div v-show="isSublineFixed" class="sublinePlaceholder" />

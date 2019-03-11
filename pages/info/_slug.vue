@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<Breadcrump :path="['Info', page.title[0].text]" />
+		<Breadcrump :path="[{ name: 'Info', menu: 'info' }, page.title[0].text]" />
 		<RichText :content="page.content" :style="style" class="info" />
 	</div>
 </template>

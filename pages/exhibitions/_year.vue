@@ -1,6 +1,6 @@
 <template>
 	<div class="wrapper">
-		<Breadcrump :path="['Exhibitions', year]" />
+		<Breadcrump :path="[{ name: 'Exhibitions', menu: 'exhibition' }, year]" />
 		<div :class="{ single: exhibitions.length === 1, exhibitions: true }" :style="style">
 			<div v-for="(exhibition, index) in exhibitions" class="line">
 				<RichText :content="exhibition" />

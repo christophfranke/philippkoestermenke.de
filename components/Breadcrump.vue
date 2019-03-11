@@ -3,7 +3,8 @@
 		<div class="offset" :style="style">
 			<span v-for="crump in parents">
 				<nuxt-link :to="crump.url" v-if="crump.url" class="link">{{ crump.name }}</nuxt-link>
-				<span v-if="!crump.url">{{ crump.name }}</span> →
+				<span v-if="!crump.url && crump.menu" @click.stop="openMobileMenu(crump.menu)" :class="{ clickable: mobileMenu }">{{ crump.name }}</span>
+				<span v-if="!crump.url && !crump.menu">{{ crump.name }}</span> →
 			</span>
 			<span class="last">
 				{{ current.name }}
@@ -13,6 +14,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
 	name: 'Breadcrump',
 	props: {
@@ -22,6 +25,7 @@ export default {
 		},
 	},
 	computed: {
+		...mapGetters(['mobileMenu']),
 		parents() {
 			return this.path.slice(0, this.path.length - 1)
 				.filter((item, index) => this.$store.getters.windowWidth > 550 || index >= this.path.length - 2)
@@ -36,6 +40,9 @@ export default {
 	},
 
 	methods: {
+		openMobileMenu(menu) {
+			this.$store.dispatch('openMobileMenu', menu)
+		},
 		expandItem(item) {
 			if (typeof item === 'string') {
 				return {
@@ -55,11 +62,12 @@ export default {
 .last {
 	color: $secondary;
 }
-.link {
+.link, .clickable {
+	cursor: pointer;
 	color: $blue;
 	&:hover {
-	color: $black;
-}
+		color: $black;
+	}
 }
 .wrapper {
 	padding-top: spacer(c);

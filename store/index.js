@@ -54,6 +54,7 @@ export default () => {
       koesteOffset: null,
       koesteWidth: null,
       isMenuOpen: false,
+      menuComponent: null
     },
     getters: {
       piece: ({ data }) => uid => (data.find(doc => doc.type === 'heizkoerper' && doc.uid === uid) || {}).data,
@@ -64,7 +65,9 @@ export default () => {
       heizungsbuch: ({ data }) => (data.find(doc => doc.type === 'heizungsbuch') || {}).data,
       windowWidth: ({ windowWidth }) => windowWidth,
       windowOverflow: ({ windowOverflow }) => windowOverflow,
+      mobileMenu: ({ windowWidth }) => windowWidth && windowWidth <= 1024,
       isMenuOpen: ({ isMenuOpen }) => isMenuOpen,
+      menuComponent: ({ menuComponent }) => menuComponent,
       koesteOffset: ({ koesteOffset }) => koesteOffset,
       koesteWidth: ({ koesteWidth }) => koesteWidth,
       contentOffset: ({ koesteOffset, windowWidth }) => windowWidth > 550 ? koesteOffset : 16,
@@ -87,8 +90,16 @@ export default () => {
             commit('updateKoesteDimensions', { left, width })
           })
       },
-      updateWindowOverflow({ commit, }) {
+      updateWindowOverflow({ commit }) {
         commit('windowOverflow', document.body.clientHeight - window.innerHeight)
+      },
+      registerMenu({ commit }, component) {
+        commit('menuComponent', component)
+      },
+      openMobileMenu({ getters }, menu) {
+        if (getters.menuComponent && getters.mobileMenu) {
+          getters.menuComponent.open(menu, 'mobile')
+        }
       }
     },
     mutations: {
@@ -105,6 +116,9 @@ export default () => {
       updateMenuState(state, isMenuOpen) {
         state.isMenuOpen = isMenuOpen
       },
+      menuComponent(state, component) {
+        state.menuComponent = component
+      }
     },
     plugins: [windowWidth, koesteDimensions, windowOverflow, dispatchResize],
   })

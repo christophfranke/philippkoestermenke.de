@@ -88,15 +88,14 @@ export default {
  	},
 
  	computed: {
- 		...mapGetters(['windowWidth']),
+ 		...mapGetters({
+ 			mobile: 'mobileMenu'
+ 		}),
  		exhibitions() {
  			return this.$store.getters.exhibitions.sort((a, b) => parseInt(b.uid, 10) - parseInt(a.uid, 10))
  		},
  		infoPages() {
  			return this.$store.getters.infoPages
- 		},
- 		mobile() {
- 			return this.windowWidth && this.windowWidth <= 1024
  		},
  	},
 
@@ -105,6 +104,8 @@ export default {
  			window.addEventListener('click', () => {
  				this.close();
  			})
+
+			this.$store.dispatch('registerMenu', this)
  		}
  	},
 

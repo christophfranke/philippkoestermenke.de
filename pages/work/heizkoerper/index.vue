@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<Breadcrump :path="['Work', 'Heizkörper']" />
+		<Breadcrump :path="[{ name: 'Work', menu: 'work' }, 'Heizkörper']" />
 		<div class="work">
 			<nuxt-link
 				v-for="(hk, index) in heizkoerper"
