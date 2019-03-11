@@ -2,8 +2,9 @@
 	<div class="wrapper">
 		<Breadcrump :path="['Exhibitions', year]" />
 		<div :class="{ single: exhibitions.length === 1, exhibitions: true }" :style="style">
-			<div v-for="exhibition in exhibitions" class="line">
+			<div v-for="(exhibition, index) in exhibitions" class="line">
 				<RichText :content="exhibition" />
+				<br v-show="index < exhibitions.length - 1">
 			</div>
 		</div>
 	</div>
@@ -23,7 +24,7 @@ export default {
  			return this.$store.getters.exhibitions
  				.find(doc => doc.uid === this.year).data.exhibitions
  				.map(exhibition => exhibition.exhibition)
- 				.map(paragraphs => paragraphs.map(data => ({ ...data, text: `● ${data.text}`})))
+ 				.map(paragraphs => paragraphs.map(data => ({ ...data, text: `${data.text}`})))
  				// .filter((item, index) => index > 1)
 		},
 		style() {
