@@ -1,7 +1,31 @@
 <template>
 	<div>
 		<Breadcrump :path="[{ name: 'Work', menu: 'work' }, 'Heizkörper']" />
-		<div class="work">
+		<div v-if="['xs', 's'].includes(breakpoint)">
+			<no-ssr>
+				<div>
+					<Carousel
+						v-for="(hk, index) in heizkoerper"
+						:key="index"
+						:perPage="1"
+						:paginationEnabled="false">
+						<Slide>
+							<div class="slide">
+								<ResponsiveImage :image="hk.data.thumb" />
+								<span class="arrow right">→</span>
+							</div>
+						</Slide>
+						<Slide v-for="(entry, index) in hk.data.gallery" :key="index">
+							<div class="slide">
+								<ResponsiveImage :image="entry.image" />
+								<span class="arrow left" v-if="index + 1 === hk.data.gallery.length">←</span>
+							</div>
+						</Slide>
+					</Carousel>
+				</div>
+			</no-ssr>
+		</div>
+		<div class="work" v-else>
 			<nuxt-link
 				v-for="(hk, index) in heizkoerper"
 				:to="`/work/heizkoerper/${hk.uid}`"
@@ -15,17 +39,21 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import components from '../../../components'
 
 export default {
 	name: 'HeizkoerperOverview',
 	components,
+
 	data() {
 		return {
 			loaded: {}
 		}
 	},
+
 	computed: {
+		...mapGetters(['breakpoint']),
 		heizkoerper() {
 			return this.$store.getters.heizkoerper
 		},
@@ -70,6 +98,26 @@ img {
 	}
 }
 
+.arrow {
+	position: absolute;
+	bottom: 10px;
+	font-size: 1rem;
+	&.left {
+		left: 10px;
+	}
+	&.right {
+		right: 10px;
+	}
+}
+
+.slide {
+	width: 100vw;
+	height: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
 
 .hasBottomBorder {
 	border-bottom: border();
