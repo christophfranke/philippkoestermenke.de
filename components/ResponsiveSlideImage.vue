@@ -10,19 +10,15 @@
 import components from '../components'
 
 export default {
-	name: 'ResponsiveImage',
+	name: 'ResponsiveSlideImage',
 	components,
 
 	props: {
 		image: {
 			type: Object,
 			required: true,
-		}
+		},
 	},
-
-	// mounted() {
-	// 	console.log(this)
-	// }
 }
 </script>
 

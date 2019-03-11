@@ -8,16 +8,17 @@
 						v-for="(hk, index) in heizkoerper"
 						:key="index"
 						:perPage="1"
-						:paginationEnabled="false">
+						:paginationEnabled="false"
+						class="slideshow">
 						<Slide>
 							<div class="slide">
-								<ResponsiveImage :image="hk.data.thumb" />
+								<ResponsiveSlideImage :image="hk.data.thumb" />
 								<span class="arrow right">→</span>
 							</div>
 						</Slide>
 						<Slide v-for="(entry, index) in hk.data.gallery" :key="index">
 							<div class="slide">
-								<ResponsiveImage :image="entry.image" />
+								<ResponsiveSlideImage :image="entry.image" />
 								<span class="arrow left" v-if="index + 1 === hk.data.gallery.length">←</span>
 							</div>
 						</Slide>
@@ -96,6 +97,10 @@ img {
 	&.preview {
 		min-height: 25vw;
 	}
+}
+
+.slideshow {
+	border-bottom: 2px solid black;
 }
 
 .arrow {
