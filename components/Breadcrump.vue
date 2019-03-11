@@ -2,7 +2,7 @@
 	<div class="wrapper">
 		<div class="offset" :style="style">
 			<span v-for="crump in parents">
-				<nuxt-link :to="crump.url" v-if="crump.url">{{ crump.name }}</nuxt-link>
+				<nuxt-link :to="crump.url" v-if="crump.url" class="link">{{ crump.name }}</nuxt-link>
 				<span v-if="!crump.url">{{ crump.name }}</span> →
 			</span>
 			<span class="last">
@@ -53,7 +53,13 @@ export default {
 <style lang="scss" scoped>
 @import '../style/definitions';
 .last {
+	color: $secondary;
+}
+.link {
 	color: $blue;
+	&:hover {
+	color: $black;
+}
 }
 .wrapper {
 	padding-top: spacer(c);
