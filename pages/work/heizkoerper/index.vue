@@ -87,6 +87,9 @@ img {
 	bottom: spacer(c);
 	right: spacer(c);
 	font-size: 1rem;
+	@include breakpoint(s) {
+		font-size: 15px;
+	}
 	:hover & {
 		color: $black;
 	}
