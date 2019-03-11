@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<Breadcrump :path="[{ name: 'Work', menu: 'work' }, { name: 'Heizkörper', url: '/work/heizkoerper' }, piece.title[0].text]" />
-		<div :class="{ image: true, ...format }">
+		<div :class="{ image: true, portrait: format.portrait, landscape: format.landscape }">
 			<ResponsiveGalleryImage :image="currentImage" :visible="visible" @load="visible=true" :format="format" />
 			<RichText :content="piece.description" :class="{ subline: true, visible: visible, selected: format.landscape }" />
 			<div class="overlay prev" @click="prevImage" v-if="visible && galleryIndex > 0"></div>
