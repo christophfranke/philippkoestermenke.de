@@ -1,13 +1,13 @@
 <template>
 	<div>
 		<Breadcrump :path="[{ name: 'Work', menu: 'work' }, { name: 'Heizkörper', url: '/work/heizkoerper' }, piece.title[0].text]" />
-		<!-- <Gallery :images="gallery" type="tiles" @load="ready = true"/> -->
-		<div class="image">
-			<ResponsiveGalleryImage :image="currentImage" :visible="visible" @load="visible=true" />
-			<RichText :content="piece.description" :class="{ subline: true, visible }" />
+		<div :class="{ image: true, ...format }">
+			<ResponsiveGalleryImage :image="currentImage" :visible="visible" @load="visible=true" :format="format" />
+			<RichText :content="piece.description" :class="{ subline: true, visible: visible, selected: format.landscape }" />
 			<div class="overlay prev" @click="prevImage" v-if="visible && galleryIndex > 0"></div>
 			<div class="overlay next" @click="nextImage" v-if="visible && galleryIndex + 1 < gallery.length"></div>
 		</div>
+		<RichText :content="piece.description" :class="{ subline: true, visible: visible, selected: format.portrait }" />
 	</div>
 </template>
 
@@ -44,6 +44,12 @@ export default {
 		currentImage() {
 			return this.gallery[this.galleryIndex]
 		},
+		format() {
+			return {
+				landscape: this.currentImage.dimensions.width > this.currentImage.dimensions.height,
+				portrait: this.currentImage.dimensions.width <= this.currentImage.dimensions.height,
+			} 
+		}
 	},
 
 	methods: {
@@ -66,6 +72,9 @@ export default {
 	height: calc(100vh - 175px);
 	width: auto;
 	position: relative;
+	&.portrait {
+		width: 66vw;
+	}
 }
 
 .overlay {
@@ -92,8 +101,12 @@ export default {
 	padding-left: spacer(b);
 	border-top: border();
 	color: $white;
+	display: none;
 	&.visible {
 		color: $black;
+	}
+	&.selected {
+		display: block;
 	}
 }
 </style>

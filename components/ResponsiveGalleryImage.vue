@@ -2,7 +2,7 @@
 	<picture>
 		<source v-if="image.small" :srcset="image.small.url" media="(max-width: 500px)" />
 		<source v-if="image.medium" :srcset="image.medium.url" media="(max-width: 1000px)" />
-		<img :src="image.url" @load="$emit('load')" :class="{ visible }">
+		<img :src="image.url" @load="$emit('load')" :class="{ visible, ...format }">
 	</picture>
 </template>
 
@@ -21,6 +21,10 @@ export default {
 		visible: {
 			type: Boolean,
 			default: true
+		},
+		format: {
+			type: Object,
+			default: {}
 		}
 	},
 }
@@ -38,6 +42,10 @@ img {
 	opacity: 0;
 	&.visible {
 		opacity: 1;
+	}
+	&.portrait {
+		margin-left: auto;
+		border-left: border();
 	}
 }
 </style>
