@@ -2,7 +2,7 @@
 	<picture>
 		<source v-if="image.small" :srcset="image.small.url" media="(max-width: 500px)" />
 		<source v-if="image.medium" :srcset="image.medium.url" media="(max-width: 1000px)" />
-		<img :src="image.url" @load="$emit('load')" :class="{ visible, ...format }">
+		<img :src="image.url" @load="$emit('load')" :class="{ visible, portrait: format.portrait, landscape: format.landscape }">
 	</picture>
 </template>
 
