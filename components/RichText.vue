@@ -28,7 +28,9 @@
 </script>
 
 <style lang="scss">
+@import '../style/colors';
 @import '../style/definitions';
+
 .cms-content{
 	a {
 		@include theme(color, primary);
