@@ -2,11 +2,11 @@
 	<div class="wrapper">
 		<div class="offset" :style="style">
 			<span v-for="crump in parents">
-				<nuxt-link :to="crump.url" v-if="crump.url" class="link">{{ crump.name }}</nuxt-link>
-				<span v-if="!crump.url && crump.menu" @click.stop="openMobileMenu(crump.menu)" :class="{ clickable: mobileMenu }">{{ crump.name }}</span>
+				<nuxt-link :to="crump.url" v-if="crump.url" :class="linkClass">{{ crump.name }}</nuxt-link>
+				<span v-if="!crump.url && crump.menu" @click.stop="openMobileMenu(crump.menu)" :class="clickableClass">{{ crump.name }}</span>
 				<span v-if="!crump.url && !crump.menu">{{ crump.name }}</span> →
 			</span>
-			<span class="last">
+			<span :class="lastClass">
 				{{ current.name }}
 			</span>
 		</div>
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import Color from '../functions/color'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -36,6 +37,15 @@ export default {
 		},
 		style() {
 			return this.$store.getters.offsetStyle
+		},
+		linkClass() {
+			return Color.classObject('link')
+		},
+		clickableClass() {
+			return this.mobileMenu ? Color.classObject('clickable') : Color.classObject()
+		},
+		lastClass() {
+			return Color.classObject('last')
 		}
 	},
 
@@ -60,11 +70,15 @@ export default {
 <style lang="scss" scoped>
 @import '../style/definitions';
 .last {
-	color: $secondary;
+	@include theme(color, secondary);
 }
+span {
+	font-size: 1em;
+}
+
 .link, .clickable {
 	cursor: pointer;
-	color: $blue;
+	@include theme(color, primary);
 	&:hover {
 		color: $black;
 	}

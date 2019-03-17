@@ -1,9 +1,12 @@
 <template>
-	<div class="cms-content" v-html="html" />
+	<div :class="baseClass">
+		<div class="cms-content" v-html="html" />
+	</div>
 </template>
 
 <script>
 	import PrismicDOM from 'prismic-dom'
+	import Color from '../functions/color'
 
 	export default {
 		name: 'RichText',
@@ -17,6 +20,9 @@
 			html() {
 				return PrismicDOM.RichText.asHtml(this.content)
 			},
+			baseClass() {
+				return Color.classObject()
+			}
 		},
 	}
 </script>
@@ -25,7 +31,7 @@
 @import '../style/definitions';
 .cms-content{
 	a {
-		color: $blue;
+		@include theme(color, primary);
 		&:hover{
 			color: $black;
 		}

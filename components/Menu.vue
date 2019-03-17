@@ -1,10 +1,10 @@
 <template>
-	<ul :class="{ mobile: mobile }">
+	<ul :class="ulClass">
 		<li class="home"><nuxt-link to="/"><span id="koeste">Philipp&nbsp;Köstermenke</span></nuxt-link></li>
 		<li
 			v-if="mobile"
 			:class="{ item: true, open: isOpen('mobile') }"
-			@click.stop.prevent="close(); open('mobile')">
+			@click.stop.prevent="toggleMobileMenu">
 			Menu
 			<ul class="sub mostRight">
 				<li :class="{ item: true, open: isOpen('exhibition') }"
@@ -77,7 +77,9 @@
 </template>
 
 <script>
+import Color from '../functions/color'
 import { mapGetters } from 'vuex'
+
 export default {
  	name: 'Menu',
 
@@ -97,6 +99,9 @@ export default {
  		infoPages() {
  			return this.$store.getters.infoPages
  		},
+ 		ulClass() {
+ 			return this.mobile ? Color.classObject('mobile') : Color.classObject()
+ 		}
  	},
 
  	mounted() {
@@ -127,6 +132,12 @@ export default {
  		},
  		isOpen(name) {
  			return !!this.openSubs[name]
+ 		},
+ 		toggleMobileMenu() {
+ 			const wasOpen = this.isOpen('mobile')
+ 			this.close()
+ 			if (!wasOpen)
+	 			this.open('mobile')
  		}
  	}
 }
@@ -178,7 +189,7 @@ li {
 		}
 	}
 	&:hover {
-		color: $blue;
+		@include theme(color, primary);
 	}
 	&.open > .sub {
 		margin-top: spacer(c) + map-get($border, width);
