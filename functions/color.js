@@ -1,17 +1,25 @@
+const themes = ['internet', 'neon', 'pink', 'waldmeister']
+
 const theme = () => {
   if (process.browser) {
   	const date = new Date()
   	const hour = date.getHours()
-    return ['internet', 'neon', 'pink', 'waldmeister'][Math.floor(hour / 6)]
+    return themes[Math.floor(hour / (Math.floor(24 / themes.length)))]
   }
 
   return ''
 }
 
-const classObject = (...args) => ({
-  [theme()] : true,
-  ...args.reduce((obj, arg) => ({ ...obj, [arg]: true }), {})
-})
+const classObject = () => {
+  const args = [].slice.call(arguments)
+  const result = {}
+  result[theme()] = true
+  args.forEach(arg => {
+    result[arg] = true
+  })
+
+  return result
+}
 
 export default {
 	theme,
