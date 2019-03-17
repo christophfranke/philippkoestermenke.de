@@ -1,6 +1,9 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
+import detectHover from 'detect-hover';
+
 import data from '../cms-data.json'
+
 
 const waitFor = fn => new Promise(resolve => {
   const resolveOrRequest = () => {
@@ -45,6 +48,7 @@ const dispatchResize = () => {
   }
 }
 
+
 export default () => {
   return new Vuex.Store({
     state: {
@@ -65,7 +69,7 @@ export default () => {
       heizungsbuch: ({ data }) => (data.find(doc => doc.type === 'heizungsbuch') || {}).data,
       windowWidth: ({ windowWidth }) => windowWidth,
       windowOverflow: ({ windowOverflow }) => windowOverflow,
-      mobileMenu: ({ windowWidth }) => windowWidth && windowWidth <= 1024,
+      mobileMenu: ({ windowWidth }) => windowWidth && detectHover.none,
       isMenuOpen: ({ isMenuOpen }) => isMenuOpen,
       menuComponent: ({ menuComponent }) => menuComponent,
       koesteOffset: ({ koesteOffset }) => koesteOffset,
