@@ -1,4 +1,57 @@
-$blue: rgb(51, 153, 255);
+// paula pink edition
+// $primary: rgb(51, 153, 255);
+// $secondary: rgb(255, 153, 153);
+
+// krito neon edition
+// $primary: rgb(115, 227, 239);
+// $secondary: rgb(220, 255, 68);
+
+// internet 2001 edition
+// $primary: rgb(0, 0, 255);
+// $secondary: rgb(255, 0, 255);
+
+// philip waldmeister edition
+// $primary: rgb(53, 153, 70);
+// $secondary: rgb(173, 157, 173);
+
+$primary: black;
+$secondary: black;
+
+
+$themes: (
+	pink: (
+		primary: rgb(51, 153, 255),
+		secondary: rgb(255, 153, 153)
+	),
+	neon: (
+		primary: rgb(115, 227, 239),
+		secondary: rgb(220, 255, 68)
+	),
+	internet: (
+		primary: rgb(0, 0, 255),
+		secondary: rgb(255, 0, 255)
+	),
+	waldmeister: (
+		primary: rgb(53, 153, 70),
+		secondary: rgb(173, 157, 173)
+	)
+);
+
+$default: neon;
+
 $black: black;
 $white: white;
-$secondary: rgb(255, 153, 153);
+
+
+@mixin theme($property, $type) {
+	@each $theme in map-keys($themes) {
+		&.#{$theme} {
+			#{$property}: map-get(map-get($themes, $theme), $type)
+		}
+		.#{$theme} & {
+			#{$property}: map-get(map-get($themes, $theme), $type)
+		}
+	}
+	#{$property}: map-get(map-get($themes, $default), $type)
+}
+

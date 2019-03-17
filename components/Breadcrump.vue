@@ -68,7 +68,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../style/colors';
 @import '../style/definitions';
 .last {
 	@include theme(color, secondary);

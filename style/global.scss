@@ -25,7 +25,7 @@ a {
 	color: $black;
 	text-decoration: none;
 	&:hover {
-		color: $blue;
+		@include theme(color, primary);
 	}
 }
 

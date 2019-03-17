@@ -28,7 +28,6 @@
 </script>
 
 <style lang="scss">
-@import '../style/colors';
 @import '../style/definitions';
 
 .cms-content{
