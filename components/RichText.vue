@@ -16,12 +16,27 @@
 				required: true,
 			},
 		},
+
+		data() {
+			return {
+				loaded: false
+			}
+		},
+
+		mounted() {
+			this.loaded = true
+		},
+
 		computed: {
 			html() {
 				return PrismicDOM.RichText.asHtml(this.content)
 			},
 			baseClass() {
-				return Color.classObject()
+				if (this.loaded) {
+					return Color.classObject()
+				} else {
+					return {}
+				}
 			}
 		},
 	}
