@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import components from '../../../components'
 
 export default {
@@ -26,6 +27,7 @@ export default {
 	},
 
 	computed: {
+		...mapGetters(['mobileMenu']),
 		uid() {
 			return this.$route.params.uid
 		},
@@ -51,6 +53,13 @@ export default {
 			} 
 		}
 	},
+
+	watch: {
+		mobileMenu(value) {
+			console.log(this.$router.push)
+		}
+	},
+
 
 	methods: {
 		nextImage() {
