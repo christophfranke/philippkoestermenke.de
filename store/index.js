@@ -69,7 +69,7 @@ export default () => {
       heizungsbuch: ({ data }) => (data.find(doc => doc.type === 'heizungsbuch') || {}).data,
       windowWidth: ({ windowWidth }) => windowWidth,
       windowOverflow: ({ windowOverflow }) => windowOverflow,
-      mobileMenu: ({ windowWidth }) => windowWidth && detectHover.none,
+      mobileMenu: ({ windowWidth }) => windowWidth && (detectHover.none || windowWidth < 800),
       isMenuOpen: ({ isMenuOpen }) => isMenuOpen,
       menuComponent: ({ menuComponent }) => menuComponent,
       koesteOffset: ({ koesteOffset }) => koesteOffset,
