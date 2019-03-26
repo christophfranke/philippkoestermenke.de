@@ -78,7 +78,7 @@ export default {
 	position: relative;
 	height: calc(100vh - 130px);
 	@include breakpoint(s) {
-		height: calc(100vh - 170px);
+		height: calc(100vh - 180px);
 	}
 }
 .subline {
