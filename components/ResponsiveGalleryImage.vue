@@ -40,6 +40,7 @@ img {
 	max-width: 75vw;
 	border-right: border();
 	opacity: 0;
+	transition: opacity 0.1s 0.1s;
 	&.visible {
 		opacity: 1;
 	}

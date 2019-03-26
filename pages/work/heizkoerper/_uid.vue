@@ -110,6 +110,7 @@ export default {
 	padding-left: spacer(b);
 	border-top: border();
 	color: $white;
+	transition: color 0.1s 0.1s;
 	display: none;
 	&.visible {
 		color: $black;

@@ -36,6 +36,7 @@ img {
 	max-width: 100vw;
 	margin: 40px auto;
 	opacity: 0;
+	transition: opacity 0.1s 0.1s;
 	&.visible {
 		opacity: 1;
 	}

@@ -17,7 +17,7 @@
 				<ResponsiveBookImage :image="currentImage" :visible="visible" @load="visible=true" />
 				<div class="overlay prev" @click="prevImage" v-if="visible && galleryIndex > 0"></div>
 				<div class="overlay next" @click="nextImage" v-if="visible && galleryIndex + 1 < gallery.length"></div>
-				<RichText :content="heizungsbuch.description" :class="{ subline: true }" :style="sublineStyle" v-if="visible" />
+				<RichText :content="heizungsbuch.description" :class="{ subline: true, visible }" :style="sublineStyle" />
 			</div>
 		</div>
 	</div>
@@ -86,6 +86,11 @@ export default {
 	padding-top: spacer(b);
 	padding-bottom: spacer(b);
 	border-top: border();
+	opacity: 0;
+	transition: opacity 0.1s 0.1s;
+	&.visible {
+		opacity: 1;
+	}
 }
 img {
 	width: 100%;
