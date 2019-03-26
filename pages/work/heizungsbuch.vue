@@ -71,14 +71,14 @@ export default {
 @import '../../style/definitions';
 
 .page {
-	height: calc(100vh - 175px);
+	height: calc(100vh - 257px);
 	position: relative;
 }
 .slide {
 	position: relative;
-	height: calc(100vh - 130px);
+	height: calc(100vh - 210px);
 	@include breakpoint(s) {
-		height: calc(100vh - 175px);
+		height: calc(100vh - 257px);
 	}
 }
 .subline {
@@ -96,7 +96,7 @@ img {
 }
 .overlay {
 	position: absolute;
-	height: calc(100vh - 175px);
+	height: calc(100vh - 257px);
 	width: 50vw;	
 }
 .arrow {

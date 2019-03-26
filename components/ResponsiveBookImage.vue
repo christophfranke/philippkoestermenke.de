@@ -34,7 +34,7 @@ img {
 
 	max-height: 100%;
 	max-width: 100vw;
-	margin: auto;
+	margin: 40px auto;
 	opacity: 0;
 	&.visible {
 		opacity: 1;
