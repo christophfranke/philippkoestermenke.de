@@ -2,7 +2,7 @@
 	<picture>
 		<source v-if="image.small" :srcset="image.small.url" media="(max-width: 500px)" />
 		<source v-if="image.medium" :srcset="image.medium.url" media="(max-width: 1000px)" />
-		<img :src="image.url" @load="$emit('load')" :class="{ visible, portrait: format.portrait, landscape: format.landscape }">
+		<img :src="image.url" @load="$emit('load')" :class="{ visible }">
 	</picture>
 </template>
 
@@ -10,7 +10,7 @@
 import components from '../components'
 
 export default {
-	name: 'ResponsiveGalleryImage',
+	name: 'ResponsiveBookImage',
 	components,
 
 	props: {
@@ -22,10 +22,6 @@ export default {
 			type: Boolean,
 			default: true
 		},
-		format: {
-			type: Object,
-			default: () => ({})
-		}
 	},
 }
 </script>
@@ -37,15 +33,11 @@ img {
 	display: block;
 
 	max-height: 100%;
-	max-width: 75vw;
-	border-right: border();
+	max-width: 100vw;
+	margin: auto;
 	opacity: 0;
 	&.visible {
 		opacity: 1;
-	}
-	&.portrait {
-		margin-left: auto;
-		border-left: border();
 	}
 }
 </style>

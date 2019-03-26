@@ -11,9 +11,12 @@
 			</no-ssr>
 		</div>
 		<div v-else>
-			<Gallery :images="gallery" type="free" @load="ready = true"/>
-			<RichText :content="heizungsbuch.description" :class="{ subline: true, fixed: isSublineFixed }" :style="sublineStyle" v-if="ready" />
-			<div v-show="isSublineFixed" class="sublinePlaceholder" />
+			<div class="page">
+				<ResponsiveBookImage :image="currentImage" :visible="visible" @load="visible=true" />
+				<div class="overlay prev" @click="prevImage" v-if="visible && galleryIndex > 0"></div>
+				<div class="overlay next" @click="nextImage" v-if="visible && galleryIndex + 1 < gallery.length"></div>
+				<RichText :content="heizungsbuch.description" :class="{ subline: true }" :style="sublineStyle" v-if="visible" />
+			</div>
 		</div>
 	</div>
 </template>
@@ -28,7 +31,8 @@ export default {
 
 	data() {
 		return {
-			ready: false
+			visible: false,
+			galleryIndex: 0,
 		}
 	},
 
@@ -40,11 +44,22 @@ export default {
 		gallery() {
 			return this.heizungsbuch.gallery.map(entry => entry.image)
 		},
+		currentImage() {
+			return this.gallery[this.galleryIndex]
+		},
 		sublineStyle() {
 			return this.$store.getters.offsetStyle
 		},
-		isSublineFixed() {
-			return this.$store.getters.windowOverflow > 0
+	},
+
+	methods: {
+		nextImage() {
+			this.visible = false
+			this.galleryIndex += 1
+		},
+		prevImage() {
+			this.visible = false
+			this.galleryIndex -= 1
 		}
 	}
 }
@@ -53,18 +68,15 @@ export default {
 <style lang="scss" scoped>
 @import '../../style/definitions';
 
+.page {
+	height: calc(100vh - 175px);
+	position: relative;
+}
 .subline {
 	font-size: 16px;
 	padding-top: spacer(b);
 	padding-bottom: spacer(b);
-	&.fixed {
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		background-color: $white;
-		border-top: border();
-	}
+	border-top: border();
 }
 img {
 	width: 100%;
@@ -73,4 +85,21 @@ img {
 .sublinePlaceholder {
 	height: 45px;
 }
+.overlay {
+	position: absolute;
+	height: calc(100vh - 175px);
+	width: 50vw;	
+}
+
+.prev {
+	left: 0;
+	top: 0;
+	cursor: url(/arrow-left.png), auto;
+}
+.next {
+	left: 50vw;
+	top: 0;
+	cursor: url(/arrow-right.png), auto;
+}
+
 </style>

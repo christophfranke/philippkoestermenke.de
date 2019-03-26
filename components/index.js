@@ -6,6 +6,7 @@ export default {
 	Gallery: () => import('./Gallery.vue'),
 	ResponsiveSlideImage: () => import('./ResponsiveSlideImage.vue'),
 	ResponsiveGalleryImage: () => import('./ResponsiveGalleryImage.vue'),
+	ResponsiveBookImage: () => import('./ResponsiveBookImage.vue'),
 	Carousel: () => import('vue-carousel').then(module => module.Carousel),
 	Slide: () => import('vue-carousel').then(module => module.Slide)
 }
