@@ -78,7 +78,7 @@ export default {
 @import '../../../style/definitions';
 
 .image {
-	height: calc(100vh - 175px);
+	height: calc(100vh - 177px);
 	width: auto;
 	position: relative;
 	&.portrait {
@@ -88,7 +88,7 @@ export default {
 
 .overlay {
 	position: absolute;
-	height: calc(100vh - 175px);
+	height: calc(100vh - 177px);
 	width: 50vw;	
 }
 
