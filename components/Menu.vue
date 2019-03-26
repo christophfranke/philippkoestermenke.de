@@ -182,6 +182,7 @@ li {
 		margin-bottom: - spacer(c);
 	}
 	&.item {
+		cursor: pointer;
 		position: relative;
 		border-left: border();
 		@include breakpoint(s) {
