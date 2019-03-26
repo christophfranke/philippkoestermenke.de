@@ -34,9 +34,9 @@ img.logo {
 	height: auto;
 	position: absolute;
 	bottom: spacer(c);
-	width: 25%;
+	width: 45%;
 	@include breakpoint(l) {
-		width: 50%;
+		width: 60%;
 	}
 	@include breakpoint(xs) {
 		width: calc(100% - #{2*spacer(c)});
