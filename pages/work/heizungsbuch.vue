@@ -76,9 +76,9 @@ export default {
 }
 .slide {
 	position: relative;
-	height: calc(100vh - 210px);
+	height: calc(100vh - 130px);
 	@include breakpoint(s) {
-		height: calc(100vh - 257px);
+		height: calc(100vh - 170px);
 	}
 }
 .subline {
