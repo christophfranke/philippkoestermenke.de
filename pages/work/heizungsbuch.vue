@@ -1,11 +1,13 @@
 <template>
 	<div>
 		<Breadcrump :path="[{ name: 'Work', menu: 'work' }, 'Heizungsbuch']" />
-		<div v-if="['xs', 's'].includes(breakpoint)">
+		<div v-if="mobileMenu">
 			<no-ssr placeholder="loading...">
-				<Carousel :perPage="1">
-					<Slide v-for="(entry, index) in heizungsbuch.gallery" :key="index">
-						<ResponsiveImage :image="entry.image" />
+				<Carousel :perPage="1" :paginationEnabled="false">
+					<Slide v-for="(entry, index) in heizungsbuch.gallery" :key="index" class="slide">
+						<ResponsiveSlideImage :image="entry.image" />
+						<span class="arrow left" v-if="index + 1 === heizungsbuch.gallery.length">←</span>
+						<span class="arrow right" v-if="index === 0">→</span>
 					</Slide>
 				</Carousel>
 			</no-ssr>
@@ -37,7 +39,7 @@ export default {
 	},
 
 	computed: {
-		...mapGetters(['breakpoint']),
+		...mapGetters(['mobileMenu']),
 		heizungsbuch() {
 			return this.$store.getters.heizungsbuch
 		},
@@ -72,6 +74,13 @@ export default {
 	height: calc(100vh - 175px);
 	position: relative;
 }
+.slide {
+	position: relative;
+	height: calc(100vh - 130px);
+	@include breakpoint(s) {
+		height: calc(100vh - 175px);
+	}
+}
 .subline {
 	font-size: 16px;
 	padding-top: spacer(b);
@@ -89,6 +98,17 @@ img {
 	position: absolute;
 	height: calc(100vh - 175px);
 	width: 50vw;	
+}
+.arrow {
+	position: absolute;
+	bottom: 10px;
+	font-size: 1rem;
+	&.left {
+		left: 10px;
+	}
+	&.right {
+		right: 10px;
+	}
 }
 
 .prev {
